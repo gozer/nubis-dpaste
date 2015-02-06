@@ -1,0 +1,8 @@
+aws_access_key = ""
+aws_secret_key = ""
+consul_secret = ""
+consul = ""
+key_name = ""
+region = ""
+#base_release = "0"
+#base_build = "1"

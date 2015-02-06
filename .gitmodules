@@ -1,0 +1,3 @@
+[submodule "dpaste"]
+	path = dpaste
+	url = https://github.com/bartTC/dpaste.git

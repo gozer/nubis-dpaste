@@ -1,0 +1,7 @@
+# Do not track secrets
+nubis/packer/variables.json
+nubis/terraform/variables.tfvars
+nubis/terraform/variables.tfstate
+nubis/terraform/variables.tfstate.backup
+terraform.tfstate
+terraform.tfstate.backup
