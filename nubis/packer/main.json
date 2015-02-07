@@ -2,7 +2,8 @@
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
-    "base_ami": "",
+    "iam_instance_profile": "",
+    "base_ami": "ami-1f461c2f",
     "owner": "",
     "release": null,
     "build": null
@@ -17,7 +18,7 @@
     "source_ami": "{{user `base_ami`}}",
     "instance_type": "m3.medium",
     "ssh_username": "ubuntu",
-    "ami_name": "mozilla nubis-dpaste v/{{user `release`}} t/{{timestamp}}",
+    "ami_name": "mozilla nubis-dpaste v/{{user `release`}}.{{user `build`}} t/{{timestamp}}",
     "ami_description": "Nubis - Dpaste",
     "ami_regions" : [ "us-east-1" ],
     "tags" : {
