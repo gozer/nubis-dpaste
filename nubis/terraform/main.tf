@@ -39,7 +39,7 @@ provider "aws" {
 
 # Create a new load balancer
 resource "aws_elb" "dpaste" {
-    name = "dpaste-elb"
+    name = "dpaste-elb-${var.release}-${var.build}"
     availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c" ]
 
     listener {
@@ -84,7 +84,7 @@ resource "aws_instance" "dpaste" {
 }
 
 resource "aws_security_group" "dpaste" {
-  name        = "dpaste"
+  name        = "dpaste-${var.release}-${var.build}"
   description = "Allow inbound traffic for dpaste"
 
   ingress {
