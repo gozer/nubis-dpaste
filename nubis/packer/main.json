@@ -3,7 +3,7 @@
     "aws_access_key": "",
     "aws_secret_key": "",
     "iam_instance_profile": "",
-    "base_ami": "",
+    "base_ami": "ami-1f461c2f",
     "owner": "",
     "release": null,
     "build": null
