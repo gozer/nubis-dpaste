@@ -2,6 +2,7 @@
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
+    "iam_instance_profile": "",
     "base_ami": "",
     "owner": "",
     "release": null,
