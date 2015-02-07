@@ -6,7 +6,7 @@ The structure of the repository is quite simple. The application is installed as
 
 
 ## Deployment Process
-Currently there are a few steps necessary to deploy this project. We intend to simplify this process going forward. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the Packer bits and jump straight to the Terraform section.
+Currently there are a few steps necessary to deploy this project. We intend to simplify this process going forward. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the Packer bits and jump straight to the [Terraform](https://github.com/tinnightcap/nubis-dpaste#terraform) section.
 
 
 ### Puppet
@@ -30,7 +30,7 @@ packer build -var-file=nubis/packer/variables.json -var release=0 -var build=1 n
 This takes around *11m 18.488s* to complete.
 
 
-### Terraform:
+### Terraform
 The next step is to take the shiny new AMI that Packer built and deploy it. This is where [Terraform](https://www.terraform.io/) comes into play. Terraform is our infrastructure deployment framework, but not to worry it is really not as complicated as its name implies. It consists of a few files:
 
 1. [inputs.tf](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/terraform/inputs.tf) simply lists the variables you might need to provide
