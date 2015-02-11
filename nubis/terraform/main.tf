@@ -40,7 +40,7 @@ provider "aws" {
 # Create a new load balancer
 resource "aws_elb" "dpaste" {
     name = "dpaste-elb-${var.release}-${var.build}"
-    availability_zones = ["us-west-2a", "us-west-2b", "us-west-2c" ]
+    availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c" ]
 
     listener {
         instance_port     = 8080
@@ -64,7 +64,7 @@ resource "aws_elb" "dpaste" {
 # Create a web server
 resource "aws_instance" "dpaste" {
 #    ami = "${consul_keys.app.var.ami}"
-    ami = "ami-85e5beb5"
+    ami = "ami-a26f27ca"
     
     tags {
         Name = "Jd Dpaste Test"
@@ -105,6 +105,19 @@ resource "aws_security_group" "dpaste" {
       from_port   = 0
       to_port     = 22
       protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+  
+  ingress {
+      from_port   = 8300
+      to_port     = 8303
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+      from_port   = 8300
+      to_port     = 8303
+      protocol    = "udp"
       cidr_blocks = ["0.0.0.0/0"]
   }
 }

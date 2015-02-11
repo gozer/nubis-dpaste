@@ -5,3 +5,4 @@
 
 import 'apache.pp'
 import 'mysql.pp'
+import 'fluentd.pp'
