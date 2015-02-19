@@ -6,20 +6,20 @@ The structure of the repository is quite simple. The application is installed as
 
 
 ## Deployment Process
-Currently there are a few steps necessary to deploy this project. We intend to simplify this process going forward. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the Packer bits and jump straight to the [Terraform](https://github.com/tinnightcap/nubis-dpaste#terraform) section.
+Currently there are a few steps necessary to deploy this project. We intend to simplify this process going forward. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the Packer bits and jump straight to the [Terraform](#terraform) section.
 
 
 ### Puppet
-We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our VM. Puppet installs and configures services such as *Apache* and *MySql*. We are using the [nubis-puppet](https://github.com/mozilla/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/mozilla/nubis-base)) that we are going to use as the starting image for our Packer build in the next step.
+We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our VM. Puppet installs and configures services such as *Apache* and *MySql*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step.
 
 
 ### Packer
 [Packer](https://www.packer.io/) is the piece that will build our AMI. It is made up of a few pieces:
 
-1. The [main.json](https://github.com/mozilla/nubis-dpaste/tree/master/nubis/packer/main.json) file which contains:
+1. The [main.json](nubis/packer/main.json) file which contains:
     * A *builders* statement describing where to build the AMI
     * One or more *provisioners* statements for calling puppet standalone and any bootstrapping commands for the application
-2. A [variables.json](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/packer/variables.json-dist) file which contains things like:
+2. A [variables.json](nubis/packer/variables.json-dist) file which contains things like:
     * AWS credentials
     * base AMI ID
 
@@ -33,10 +33,10 @@ This takes around *11m 18.488s* to complete.
 ### Terraform
 The next step is to take the shiny new AMI that Packer built and deploy it. This is where [Terraform](https://www.terraform.io/) comes into play. Terraform is our infrastructure deployment framework, but not to worry it is really not as complicated as its name implies. It consists of a few files:
 
-1. [inputs.tf](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/terraform/inputs.tf) simply lists the variables you might need to provide
-2. [main.tf](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/terraform/main.tf) is where the real heavy lifting takes place. This is where you describe your infrastructure. Thisgs like EC2 instances, security groups, ELBs and so on.
-3. [outputs.tf](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/terraform/outputs.tf) describes what information from the build we want to make available (via Consul) for later reference.
-4. [terraform.tfvars](https://github.com/mozilla/nubis-dpaste/blob/master/nubis/terraform/terraform.tfvars-dist) is where you will set your AWS credentials and such.
+1. [inputs.tf](nubis/terraform/inputs.tf) simply lists the variables you might need to provide
+2. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes place. This is where you describe your infrastructure. Thisgs like EC2 instances, security groups, ELBs and so on.
+3. [outputs.tf](nubis/terraform/outputs.tf) describes what information from the build we want to make available (via Consul) for later reference.
+4. [terraform.tfvars](nubis/terraform/terraform.tfvars-dist) is where you will set your AWS credentials and such.
 
 To run terraform, from the repository root you first need to create your *terraform.tfvars* file, for which there is a template provided (terraform.tfvars-dist). After which you simply call terraform like so:
 
