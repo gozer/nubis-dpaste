@@ -1,0 +1,13 @@
+{
+  "variables": {
+    "project_source_ami_project": "nubis-base",
+    "automatic_version_bump": "1",
+    "skip_collision_detection": "0",
+    "librarian_puppet_puppetfile": "",
+    "project_name": "nubis-dpaste",
+    "project_description": "Nubis Example Dpaste Application",
+    "project_version": "0.20",
+    "project_release": "0",
+    "project_build": "20"
+  }
+}
