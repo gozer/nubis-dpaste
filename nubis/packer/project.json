@@ -1,13 +1,14 @@
 {
   "variables": {
-    "project_source_ami_project": "nubis-base",
-    "automatic_version_bump": "1",
-    "skip_collision_detection": "0",
-    "librarian_puppet_puppetfile": "",
     "project_name": "nubis-dpaste",
     "project_description": "Nubis Example Dpaste Application",
-    "project_version": "0.20",
-    "project_release": "0",
-    "project_build": "20"
+    "project_version": "0.51",
+    "source_ami_project_name": "nubis-base",
+    "source_ami_project_version": "2.15",
+    "automatic_version_bump": "1",
+    "automatic_version_verify": "1",
+    "builders": [
+      "amazon-ebs-amazon-linux"
+    ]
   }
 }
