@@ -1,14 +1,14 @@
 {
 "provisioners": [
   {
-    "type": "file",
-    "source": "dpaste/",
-    "destination": "/var/www/dpaste",
+    "type": "shell",
+    "inline": ["sudo chmod 777 /var/www/dpaste"],
     "order": "20"
   },
   {
-    "type": "shell",
-    "inline": ["sudo chmod 777 /var/www/dpaste"],
+    "type": "file",
+    "source": "dpaste/",
+    "destination": "/var/www/dpaste",
     "order": "21"
   },
   {
