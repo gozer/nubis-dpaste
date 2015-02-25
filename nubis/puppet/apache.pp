@@ -8,6 +8,16 @@ $vhost_name = 'dpaste'
 $install_root = '/var/www/dpaste'
 $wsgi_path = '/var/www/dpaste/wsgi.py'
 $static_root = '/var/www/dpaste/dpaste/static/'
+$port = 8080
+
+include nubis_discovery
+
+nubis::discovery { 'dpaste':
+  tags => [ 'apache','backend' ],
+  port => $port,
+  check => "/usr/bin/curl -I http://localhost:$port",
+  interval => "30s",
+}
 
 class {
     'apache':
@@ -18,12 +28,14 @@ class {
 }
 
 apache::vhost { $::vhost_name:
-    port                        => '8080',
+    port                        => $port,
     default_vhost               => true,
     aliases                     => [
         # TODO, what do do about this? What if an app doesn't need this?
-        {alias        => '/static',
-{path         => $::static_root}
+        {
+         alias        => '/static',
+         path         => $::static_root
+        }
     ],
     docroot                     => $::install_root,
     wsgi_application_group      => '%{GLOBAL}',
