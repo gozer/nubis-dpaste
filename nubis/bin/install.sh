@@ -18,7 +18,3 @@ sudo sh -c "echo \"PROVISION_app_db_server=localhost\\nPROVISION_db_name=dpaste\
 if [ `grep -c 'cat /etc/environment' /etc/apache2/envvars` != 1 ]; then
     sudo sh -c "echo '\\nfor i in \`cat /etc/environment | grep \"^PROVISION\"\`; do export \$i ; done' >> /etc/apache2/envvars"
 fi
-
-cd $INSTALL_DIR
-for i in `cat /etc/environment | grep "^PROVISION"`; do export $i ; done
-sudo -E python manage.py syncdb --migrate
