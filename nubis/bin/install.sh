@@ -19,11 +19,6 @@ if [ `grep -c 'cat /etc/environment' /etc/apache2/envvars` != 1 ]; then
     sudo sh -c "echo '\\nfor i in \`cat /etc/environment | grep \"^PROVISION\"\`; do export \$i ; done' >> /etc/apache2/envvars"
 fi
 
-sudo aptitude -y install python-pip
-
-#sudo chown -r ubuntu:ubuntu $INSTALL_DIR
-
 cd $INSTALL_DIR
-sudo pip install -r requirements.txt
 for i in `cat /etc/environment | grep "^PROVISION"`; do export $i ; done
 sudo -E python manage.py syncdb --migrate

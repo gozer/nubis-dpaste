@@ -2,26 +2,29 @@
 "provisioners": [
   {
     "type": "shell",
-    "inline": ["sudo chmod 777 /var/www/dpaste"],
-    "order": "20"
+    "inline": [
+      "sudo mkdir -p /var/www/dpaste",
+      "sudo chmod 777 /var/www/dpaste"
+    ],
+    "order": "5"
   },
   {
     "type": "file",
     "source": "dpaste/",
     "destination": "/var/www/dpaste",
-    "order": "21"
+    "order": "6"
   },
   {
     "type": "file",
     "source": "nubis/bin/local.py",
     "destination": "/var/www/dpaste/dpaste/settings/local.py",
-    "order": "22"
+    "order": "7"
   },
   {
     "type": "file",
     "source": "nubis/bin/wsgi.py",
     "destination": "/var/www/dpaste/wsgi.py",
-    "order": "23"
+    "order": "8"
   },
   {
     "type": "shell",
