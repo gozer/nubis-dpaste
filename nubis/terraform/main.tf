@@ -171,6 +171,14 @@ resource "aws_security_group" "dpaste" {
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   }
+
+  # allow mysql between identical nodes
+  ingress {
+      from_port   = 0
+      to_port     = 3306
+      protocol    = "tcp"
+      self        = true
+  }
  
   ingress {
       from_port   = 0
