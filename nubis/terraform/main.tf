@@ -15,16 +15,12 @@ resource "consul_keys" "dpaste" {
         value = "http://${aws_elb.dpaste.dns_name}/"
     }
     
+    # Set the instance id for our app
     key {
         name  = "instance-id"
         path  = "aws/${var.project}/instance-id"
         value = "${aws_instance.dpaste.id}"
     }
-}
-
-# Consul config outputs
-resource "consul_keys" "app_config" {
-    datacenter = "${var.region}"
 
     key {
         name  = "db_name"
@@ -119,7 +115,7 @@ resource "aws_instance" "migrator" {
     ami = "${var.ami}"
 
     # Cant run a migration if everything isn't ready for us
-    depends_on = ["consul_keys.app_config", "aws_instance.dpaste"]
+    depends_on = ["consul_keys.dpaste", "aws_instance.dpaste"]
 
     tags {
         Name = "${var.project} migrator ${var.environment} v${var.release}-${var.build}"
