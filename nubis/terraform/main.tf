@@ -99,7 +99,7 @@ resource "aws_elb" "dpaste" {
 resource "aws_instance" "dpaste" {
     ami = "ami-a26f27ca"
     
-    depends_on = ["aws_instance.migrator"]
+    depends_on = ["aws_instance.migrator", "consul_keys.app_config"]
 
     tags {
         Name = "${var.project} ${var.environment} v${var.release}.${var.build}"
@@ -119,6 +119,8 @@ resource "aws_instance" "dpaste" {
 # Create a migration instance
 resource "aws_instance" "migrator" {
     ami = "ami-d299c4ba"
+
+    depends_on = ["consul_keys.app_config"]
 
     tags {
         Name = "${var.project} migrator ${var.environment} v${var.release}-${var.build}"
