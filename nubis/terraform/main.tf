@@ -4,14 +4,6 @@ provider "consul" {
     datacenter = "${var.region}"
 }
 
-#resource "consul_keys" "app" {
-#    # Get the base AMI id from Consul
-#    key {
-#        name = "ami"
-#        path = "nubis/base/releases/${var.base_release}.${var.base_build}/${var.region}"
-#    }
-#}
-
 # Consul outputs
 resource "consul_keys" "dpaste" {
     datacenter = "${var.region}"
@@ -63,7 +55,6 @@ resource "aws_elb" "dpaste" {
 
 # Create a web server
 resource "aws_instance" "dpaste" {
-#    ami = "${consul_keys.app.var.ami}"
     ami = "ami-a26f27ca"
     
     tags {
@@ -73,8 +64,6 @@ resource "aws_instance" "dpaste" {
     key_name = "${var.key_name}"
     
     instance_type = "m3.medium"
-    
-#    iam_instance_profile = "${var.iam_instance_profile}"
     
     security_groups = [
         "${aws_security_group.dpaste.name}"
