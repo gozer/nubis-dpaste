@@ -106,6 +106,17 @@ resource "aws_instance" "dpaste" {
     security_groups = [
         "${aws_security_group.dpaste.name}"
     ]
+
+    # Necessarey until migrator can talk to us
+    provisioner "remote-exec" {
+        connection {
+          user = "${var.ssh_user}"
+          key_file = "${var.key_path}"
+        }
+        inline = [
+	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate"
+        ]
+    }
     
     user_data = "NUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
 }
@@ -135,8 +146,8 @@ resource "aws_instance" "migrator" {
           key_file = "${var.key_path}"
         }
         inline = [
-	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate",
-	  "sudo poweroff"
+	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate"
+#	  "sudo poweroff"
         ]
     }
 
