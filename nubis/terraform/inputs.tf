@@ -38,6 +38,10 @@ variable "key_path" {
   description = "Path to the decrypted secret key for key_name"
 }
 
+variable "ssh_user" {
+  description = "User to use for ssh access"
+}
+
 variable "environment" {
   description = "Name of the environment this deployment is for"
   default = "sandbox"

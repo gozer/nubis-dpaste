@@ -90,7 +90,7 @@ resource "aws_instance" "migrator" {
 
     provisioner "remote-exec" {
         connection {
-          user = "ubuntu"
+          user = "${var.ssh_user}"
           key_file = "${var.key_path}"
         }
         inline = [
