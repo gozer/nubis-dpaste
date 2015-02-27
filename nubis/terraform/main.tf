@@ -99,6 +99,8 @@ resource "aws_elb" "dpaste" {
 resource "aws_instance" "dpaste" {
     ami = "ami-a26f27ca"
     
+    depends_on = ["aws_instance.migrator"]
+
     tags {
         Name = "${var.project} ${var.environment} v${var.release}.${var.build}"
     }
