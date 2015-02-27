@@ -11,13 +11,13 @@ resource "consul_keys" "dpaste" {
     # Set the CNAME of our load balancer as a key
     key {
         name  = "elb_cname"
-        path  = "aws/dpaste/url"
+        path  = "aws/${var.project}/url"
         value = "http://${aws_elb.dpaste.dns_name}/"
     }
     
     key {
         name  = "instance-id"
-        path  = "aws/dpaste/instance-id"
+        path  = "aws/${var.project}/instance-id"
         value = "${aws_instance.dpaste.id}"
     }
 }
@@ -148,7 +148,7 @@ resource "aws_instance" "migrator" {
 
 resource "aws_security_group" "dpaste" {
   name        = "${var.environment}-dpaste-${var.release}-${var.build}"
-  description = "Allow inbound traffic for dpaste"
+  description = "Allow inbound traffic for $[var.project}"
 
   ingress {
       from_port   = 0
