@@ -72,6 +72,36 @@ resource "aws_instance" "dpaste" {
     user_data = "CONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
 }
 
+# Create a migration instance
+resource "aws_instance" "migrator" {
+    ami = "ami-d299c4ba"
+
+    tags {
+        Name = "${var.project} migrator ${var.environment} v${var.release}-${var.build}"
+    }
+
+    key_name = "${var.key_name}"
+
+    instance_type = "m3.medium"
+
+    security_groups = [
+        "${aws_security_group.dpaste.name}"
+    ]
+
+    provisioner "remote-exec" {
+        connection {
+          user = "ubuntu"
+          key_file = "${var.key_path}"
+        }
+        inline = [
+	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate",
+	  "sudo poweroff"
+        ]
+    }
+
+    user_data = "CONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
+}
+
 resource "aws_security_group" "dpaste" {
   name        = "${var.environment}-dpaste-${var.release}-${var.build}"
   description = "Allow inbound traffic for dpaste"

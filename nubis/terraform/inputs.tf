@@ -34,6 +34,10 @@ variable "key_name" {
   description = "SSH key name in your AWS account for AWS instances."
 }
 
+variable "key_path" {
+  description = "Path to the decrypted secret key for key_name"
+}
+
 variable "environment" {
   description = "Name of the environment this deployment is for"
   default = "sandbox"
