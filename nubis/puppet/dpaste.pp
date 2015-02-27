@@ -8,6 +8,10 @@ python::requirements { '/var/www/dpaste/requirements.txt':
   require => Class['python']
 }
 
+package { 'apg':
+  ensure => present,
+}
+
 # XXX: Needs to move to its own puppet module
 # XXX: needed for the migration instance
 staging::file { 'envconsul.tar.gz':
