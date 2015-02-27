@@ -39,7 +39,7 @@ resource "consul_keys" "app_config" {
     key {
         name  = "app_db_server"
 	path  = "${var.project}/${var.environment}/config/app_db_server"
-	value = "localhost"
+	value = "${aws_instance.dpaste.private_dns}"
     }
 
     #XXX: Needs to be auto-generated
@@ -98,8 +98,6 @@ resource "aws_elb" "dpaste" {
 # Create a web server
 resource "aws_instance" "dpaste" {
     ami = "${var.ami}"
-    
-    depends_on = ["aws_instance.migrator", "consul_keys.app_config"]
 
     tags {
         Name = "${var.project} ${var.environment} v${var.release}.${var.build}"
@@ -120,7 +118,8 @@ resource "aws_instance" "dpaste" {
 resource "aws_instance" "migrator" {
     ami = "${var.ami}"
 
-    depends_on = ["consul_keys.app_config"]
+    # Cant run a migration if everything isn't ready for us
+    depends_on = ["consul_keys.app_config", "aws_instance.dpaste"]
 
     tags {
         Name = "${var.project} migrator ${var.environment} v${var.release}-${var.build}"
