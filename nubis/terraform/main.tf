@@ -147,7 +147,7 @@ resource "aws_instance" "migrator" {
         }
         inline = [
 	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate"
-#	  "sudo poweroff"
+	  "sudo poweroff"
         ]
     }
 
