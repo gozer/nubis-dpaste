@@ -97,7 +97,7 @@ resource "aws_elb" "dpaste" {
 
 # Create a web server
 resource "aws_instance" "dpaste" {
-    ami = "ami-a26f27ca"
+    ami = "${var.ami}"
     
     depends_on = ["aws_instance.migrator", "consul_keys.app_config"]
 
@@ -118,7 +118,7 @@ resource "aws_instance" "dpaste" {
 
 # Create a migration instance
 resource "aws_instance" "migrator" {
-    ami = "ami-d299c4ba"
+    ami = "${var.ami}"
 
     depends_on = ["consul_keys.app_config"]
 
@@ -150,7 +150,7 @@ resource "aws_instance" "migrator" {
 
 resource "aws_security_group" "dpaste" {
   name        = "${var.environment}-dpaste-${var.release}-${var.build}"
-  description = "Allow inbound traffic for $[var.project}"
+  description = "Allow inbound traffic for ${var.project}"
 
   ingress {
       from_port   = 0
