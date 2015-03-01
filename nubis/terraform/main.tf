@@ -22,6 +22,8 @@ resource "consul_keys" "dpaste" {
         value = "${aws_instance.dpaste.id}"
     }
 
+    #XXX: These are duplicated from puppet, should be done at startup time
+    #XXX: root_password from the instance itself, the rest, from the migrator
     key {
         name  = "db_name"
 	path  = "${var.project}/${var.environment}/config/db_name"
@@ -42,21 +44,14 @@ resource "consul_keys" "dpaste" {
     key {
         name  = "db_password"
 	path  = "${var.project}/${var.environment}/config/db_password"
-	value = "cinwaSweu"
+	value = "anothersillypassword"
     }
 
     #XXX: Needs to be auto-generated
     key {
         name  = "db_root_password"
 	path  = "${var.project}/${var.environment}/config/db_root_password"
-	value = "TygwievNu"
-    }
-
-    #XXX: Needs to be auto-generated
-    key {
-        name  = "app_secret_key"
-	path  = "${var.project}/${var.environment}/config/app_secret_key"
-	value = "a88385f6-0b75-4d46-a420-4427297f52d5"
+	value = "asillypassword"
     }
 }
 
@@ -106,19 +101,8 @@ resource "aws_instance" "dpaste" {
     security_groups = [
         "${aws_security_group.dpaste.name}"
     ]
-
-    # Necessarey until migrator can talk to us
-    provisioner "remote-exec" {
-        connection {
-          user = "${var.ssh_user}"
-          key_file = "${var.key_path}"
-        }
-        inline = [
-	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate"
-        ]
-    }
     
-    user_data = "NUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
+    user_data = "NUBIS_PROJECT=${var.project}\nNUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
 }
 
 # Create a migration instance
@@ -146,12 +130,13 @@ resource "aws_instance" "migrator" {
           key_file = "${var.key_path}"
         }
         inline = [
-	  "sudo -E python /var/www/dpaste/manage.py syncdb --migrate"
-	  "sudo poweroff"
+	  "sudo -E /usr/local/bin/nubis-migrate"
+#XXX: Disabled for debugging purposes
+#	  "sudo poweroff"
         ]
     }
 
-    user_data = "NUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
+    user_data = "NUBIS_PROJECT=${var.project}\nNUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
 }
 
 resource "aws_security_group" "dpaste" {
