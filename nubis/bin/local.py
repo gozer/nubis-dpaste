@@ -1,6 +1,9 @@
 from dpaste.settings import *
 import os
 
+import imp
+nubis = imp.load_source('nubis', '/etc/nubis-config/dpaste.sh')
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,13 +15,13 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('PROVISION_db_name'),
-        'USER': os.getenv('PROVISION_db_username'),
-        'PASSWORD': os.getenv('PROVISION_db_password'),
-        'HOST': os.getenv('PROVISION_app_db_server'),
+        'NAME': nubis.db_name,
+        'USER': nubis.db_username,
+        'PASSWORD': nubis.db_password,
+        'HOST': nubis.app_db_server,
     }
 }
 
-SECRET_KEY = os.getenv('PROVISION_app_secret_key')
+SECRET_KEY = nubis.app_secret_key
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
