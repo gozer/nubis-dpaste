@@ -16,6 +16,7 @@ include nubis_configuration
 
 nubis::configuration{ 'dpaste':
   format => "sh",
+  reload => "apache2ctl graceful",
 }
 
 # XXX: Needs to move to its own puppet module
