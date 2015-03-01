@@ -1,0 +1,17 @@
+#!/bin/bash
+eval `ec2metadata --user-data`
+
+echo "Environment: $NUBIS_ENVIRONMENT"
+echo "Project: $NUBIS_PROJECT"
+
+CONSUL="http://localhost:8500/v1/kv/$NUBIS_PROJECT/$NUBIS_ENVIRONMENT/config"
+
+APP_SECRET_KEY=`curl -s $CONSUL/app_secret_key?raw=1`
+if [ "$APP_SECRET_KEY" == "" ]; then
+  APP_SECRET_KEY=`uuidgen`
+  curl -s -X PUT -d $APP_SECRET_KEY $CONSUL/app_secret_key 
+fi
+echo " + APP_SECRET_KEY=$APP_SECRET_KEY"
+
+echo "Performing DB migrations"
+/var/www/dpaste/manage.py syncdb --migrate
