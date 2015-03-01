@@ -32,11 +32,6 @@
     "source": "nubis/bin/migrate",
     "destination": "/usr/local/bin/nubis-migrate",
     "order": "8"
-  },
-  {
-    "type": "shell",
-    "script": "nubis/bin/install.sh",
-    "order": "24"
   }
 ]
 }
