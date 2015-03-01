@@ -12,6 +12,12 @@ package { 'apg':
   ensure => present,
 }
 
+include nubis_configuration
+
+nubis::configuration{ 'dpaste':
+  format => "sh",
+}
+
 # XXX: Needs to move to its own puppet module
 # XXX: needed for the migration instance
 staging::file { 'envconsul.tar.gz':
