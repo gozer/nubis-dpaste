@@ -4,7 +4,8 @@
     "type": "shell",
     "inline": [
       "sudo mkdir -p /var/www/dpaste",
-      "sudo chmod 777 /var/www/dpaste"
+      "sudo chmod 777 /var/www/dpaste",
+      "sudo python -m compileall /var/www/dpaste"
     ],
     "order": "5"
   },
