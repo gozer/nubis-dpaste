@@ -45,8 +45,9 @@ variable "ssh_user" {
 variable "ami" {
   description = "AMI for dpaste"
   # us-east-1
-  default = "ami-d299c4ba"
+  default = "ami-d00a52b8"
 }
+
 
 variable "environment" {
   description = "Name of the environment this deployment is for"
