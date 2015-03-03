@@ -4,7 +4,8 @@
     "type": "shell",
     "inline": [
       "sudo mkdir -p /var/www/dpaste",
-      "sudo chmod 777 /var/www/dpaste"
+      "sudo chmod 777 /var/www/dpaste",
+      "sudo python -m compileall /var/www/dpaste"
     ],
     "order": "5"
   },
@@ -27,9 +28,19 @@
     "order": "8"
   },
   {
+    "type": "file",
+    "source": "nubis/bin/migrate",
+    "destination": "/tmp/nubis-migrate",
+    "order": "8"
+  },
+  {
     "type": "shell",
-    "script": "nubis/bin/install.sh",
-    "order": "24"
+    "inline": [
+      "sudo mv /tmp/nubis-migrate /usr/local/bin/nubis-migrate",
+      "sudo chown root:root /usr/local/bin/nubis-migrate",
+      "sudo chmod 755 /usr/local/bin/nubis-migrate"
+    ],
+    "order": "9"
   }
 ]
 }

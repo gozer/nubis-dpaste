@@ -2,7 +2,6 @@ $root_password = 'asillypassword'
 $db_name = 'dpaste'
 $username = 'dpaste'
 $password = 'anothersillypassword'
-$allowed_hosts = 'localhost'
 
 class { '::mysql::server':
     root_password    => $::root_password,
@@ -14,14 +13,15 @@ class { '::mysql::server':
     }
 }
 
+mysql_user { 'root@%':
+  ensure => present,
+  password_hash => mysql_password($::root_password)
+}
+
 ::mysql::db { $::db_name:
     user     => $::username,
     password => $::password,
-    host     => $::host,
-    # TODO, figure out how to pass this as a param.
-    # Unicode formating is breaking things.
-    # The list looks like [u'SELECT', u'UPDATE', ...]
-    # and puppet doesn't like that.
+    host     => '%',
     grant    => ['ALL']
 }
 

@@ -12,7 +12,7 @@ $port = 8080
 
 include nubis_discovery
 
-nubis::discovery { 'dpaste':
+nubis::discovery::service { 'dpaste':
   tags => [ 'apache','backend' ],
   port => $port,
   check => "/usr/bin/curl -I http://localhost:$port",

@@ -1,13 +1,6 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
-variable "amis" {
-    default = {
-        us-east-1 = "ami-a26f27ca"
-        us-west-2 = "ami-15f7d225"
-    }
-}
-
 variable "consul" {
   description = "URL to Consul"
   default = "127.0.0.1"
@@ -39,4 +32,24 @@ variable "build" {
 
 variable "key_name" {
   description = "SSH key name in your AWS account for AWS instances."
+}
+
+variable "key_path" {
+  description = "Path to the decrypted secret key for key_name"
+}
+
+variable "ssh_user" {
+  description = "User to use for ssh access"
+}
+
+variable "ami" {
+  description = "AMI for dpaste"
+  # us-east-1
+  default = "ami-d00a52b8"
+}
+
+
+variable "environment" {
+  description = "Name of the environment this deployment is for"
+  default = "sandbox"
 }

@@ -4,14 +4,6 @@ provider "consul" {
     datacenter = "${var.region}"
 }
 
-#resource "consul_keys" "app" {
-#    # Get the base AMI id from Consul
-#    key {
-#        name = "ami"
-#        path = "nubis/base/releases/${var.base_release}.${var.base_build}/${var.region}"
-#    }
-#}
-
 # Consul outputs
 resource "consul_keys" "dpaste" {
     datacenter = "${var.region}"
@@ -19,14 +11,47 @@ resource "consul_keys" "dpaste" {
     # Set the CNAME of our load balancer as a key
     key {
         name  = "elb_cname"
-        path  = "aws/dpaste/url"
+        path  = "aws/${var.project}/url"
         value = "http://${aws_elb.dpaste.dns_name}/"
     }
     
+    # Set the instance id for our app
     key {
         name  = "instance-id"
-        path  = "aws/dpaste/instance-id"
+        path  = "aws/${var.project}/instance-id"
         value = "${aws_instance.dpaste.id}"
+    }
+
+    #XXX: These are duplicated from puppet, should be done at startup time
+    #XXX: root_password from the instance itself, the rest, from the migrator
+    key {
+        name  = "db_name"
+	path  = "${var.project}/${var.environment}/config/db_name"
+	value = "${var.project}"
+    }
+    key {
+        name  = "db_username"
+	path  = "${var.project}/${var.environment}/config/db_username"
+	value = "${var.project}"
+    }
+    key {
+        name  = "app_db_server"
+	path  = "${var.project}/${var.environment}/config/app_db_server"
+	value = "${aws_instance.dpaste.private_dns}"
+    }
+
+    #XXX: Needs to be auto-generated
+    key {
+        name  = "db_password"
+	path  = "${var.project}/${var.environment}/config/db_password"
+	value = "anothersillypassword"
+    }
+
+    #XXX: Needs to be auto-generated
+    key {
+        name  = "db_root_password"
+	path  = "${var.project}/${var.environment}/config/db_root_password"
+	value = "asillypassword"
     }
 }
 
@@ -39,7 +64,7 @@ provider "aws" {
 
 # Create a new load balancer
 resource "aws_elb" "dpaste" {
-    name = "dpaste-elb-${var.release}-${var.build}"
+    name = "${var.environment}-${var.project}-elb-${var.release}-${var.build}"
     availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c" ]
 
     listener {
@@ -63,29 +88,59 @@ resource "aws_elb" "dpaste" {
 
 # Create a web server
 resource "aws_instance" "dpaste" {
-#    ami = "${consul_keys.app.var.ami}"
-    ami = "ami-a26f27ca"
-    
+    ami = "${var.ami}"
+
     tags {
-        Name = "Jd Dpaste Test"
+        Name = "${var.project} ${var.environment} v${var.release}.${var.build}"
     }
     
     key_name = "${var.key_name}"
     
     instance_type = "m3.medium"
     
-#    iam_instance_profile = "${var.iam_instance_profile}"
-    
     security_groups = [
         "${aws_security_group.dpaste.name}"
     ]
     
-    user_data = "CONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
+    user_data = "NUBIS_PROJECT=${var.project}\nNUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
+}
+
+# Create a migration instance
+resource "aws_instance" "migrator" {
+    ami = "${var.ami}"
+
+    # Cant run a migration if everything isn't ready for us
+    depends_on = ["consul_keys.dpaste", "aws_instance.dpaste"]
+
+    tags {
+        Name = "${var.project} migrator ${var.environment} v${var.release}-${var.build}"
+    }
+
+    key_name = "${var.key_name}"
+
+    instance_type = "m3.medium"
+
+    security_groups = [
+        "${aws_security_group.dpaste.name}"
+    ]
+
+    provisioner "remote-exec" {
+        connection {
+          user = "${var.ssh_user}"
+          key_file = "${var.key_path}"
+        }
+        inline = [
+	  "sudo /usr/local/bin/nubis-migrate",
+	  "sudo poweroff"
+        ]
+    }
+
+    user_data = "NUBIS_PROJECT=${var.project}\nNUBIS_ENVIRONMENT=${var.environment}\nCONSUL_PUBLIC=1\nCONSUL_DC=${var.region}\nCONSUL_SECRET=${var.consul_secret}\nCONSUL_JOIN=${var.consul}"
 }
 
 resource "aws_security_group" "dpaste" {
-  name        = "dpaste-${var.release}-${var.build}"
-  description = "Allow inbound traffic for dpaste"
+  name        = "${var.environment}-dpaste-${var.release}-${var.build}"
+  description = "Allow inbound traffic for ${var.project}"
 
   ingress {
       from_port   = 0
@@ -99,6 +154,14 @@ resource "aws_security_group" "dpaste" {
       to_port     = 8080
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # allow mysql between identical nodes
+  ingress {
+      from_port   = 0
+      to_port     = 3306
+      protocol    = "tcp"
+      self        = true
   }
  
   ingress {
