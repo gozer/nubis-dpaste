@@ -130,9 +130,8 @@ resource "aws_instance" "migrator" {
           key_file = "${var.key_path}"
         }
         inline = [
-	  "sudo -E /usr/local/bin/nubis-migrate"
-#XXX: Disabled for debugging purposes
-#	  "sudo poweroff"
+	  "sudo /usr/local/bin/nubis-migrate",
+	  "sudo poweroff"
         ]
     }
 
