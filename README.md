@@ -56,6 +56,8 @@ Edit both *nubis/packer/variables.json* and *nubis/terraform/terraform.tfvars*
 ```bash
 git clone https://github.com/mozilla/nubis-dpaste.git
 
+git submodule update --init --recursive
+
 packer build -var-file=nubis/packer/variables.json -var release=0 -var build=1 nubis/packer/main.json
 
 terraform apply -var-file=nubis/terraform/terraform.tfvars nubis/terraform/
