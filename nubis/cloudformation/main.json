@@ -103,7 +103,7 @@
           "Environment": {
             "Ref": "Environment"
           },
-          "ElbHealthTarget": "HTTP:80/Special%3AVersion"
+          "ElbHealthTarget": "HTTP:80/"
         }
       }
     },
