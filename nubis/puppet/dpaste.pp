@@ -8,8 +8,18 @@ python::requirements { '/var/www/dpaste/requirements.txt':
   require => Class['python']
 }
 
+exec { "apt-get update":
+    command => "/usr/bin/apt-get update",
+}
+
+package { 'makepasswd':
+  ensure => '1.10-9',
+  require  => Exec['apt-get update'],
+}
+
 package { 'apg':
   ensure => present,
+  require  => Exec['apt-get update'],
 }
 
 include nubis_configuration
