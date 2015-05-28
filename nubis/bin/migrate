@@ -51,35 +51,35 @@ while [ "$CONSUL_UP" != "0" ]; do
 done
 
 # Generate and set the secrets for the app
-DB_NAME=`curl -s $CONSUL/DB_NAME?raw=1`
+DB_NAME=`curl -s ${CONSUL}'/DB_NAME?raw=1'`
 if [ "$DB_NAME" == "" ]; then
     DB_NAME='dpaste'
     curl -s -X PUT -d $DB_NAME $CONSUL/DB_NAME
 fi
 $LOGGER " + DB_NAME=$DB_NAME"
 
-DB_USERNAME=`curl -s $CONSUL/DB_USERNAME?raw=1`
+DB_USERNAME=`curl -s ${CONSUL}'/DB_USERNAME?raw=1'`
 if [ "$DB_USERNAME" == "" ]; then
     DB_USERNAME='dpaste'
     curl -s -X PUT -d $DB_USERNAME $CONSUL/DB_USERNAME
 fi
 $LOGGER " + DB_USERNAME=$DB_USERNAME"
 
-DB_PASSWORD=`curl -s $CONSUL/DB_PASSWORD?raw=1`
+DB_PASSWORD=`curl -s ${CONSUL}'/DB_PASSWORD?raw=1'`
 if [ "$DB_PASSWORD" == "" ]; then
     DB_PASSWORD=`makepasswd --minchars=12 --maxchars=16`
     curl -s -X PUT -d $DB_PASSWORD $CONSUL/DB_PASSWORD
 fi
 $LOGGER " + DB_PASSWORD=$DB_PASSWORD"
 
-DB_SERVER=`curl -s $CONSUL/DB_SERVER?raw=1`
+DB_SERVER=`curl -s ${CONSUL}'/DB_SERVER?raw=1'`
 if [ "$DB_SERVER" == "" ]; then
     DB_SERVER='localhost'
     curl -s -X PUT -d $DB_SERVER $CONSUL/DB_SERVER
 fi
 $LOGGER " + DB_SERVER=$DB_SERVER"
 
-APP_SECRET_KEY=`curl -s $CONSUL/APP_SECRET_KEY?raw=1`
+APP_SECRET_KEY=`curl -s ${CONSUL}'/APP_SECRET_KEY?raw=1'`
 if [ "$APP_SECRET_KEY" == "" ]; then
     APP_SECRET_KEY=`uuidgen`
     curl -s -X PUT -d $APP_SECRET_KEY $CONSUL/APP_SECRET_KEY
@@ -92,13 +92,14 @@ echo -e "[client]\npassword=$DB_PASSWORD\nhost=$DB_SERVER\nuser=$DB_USERNAME" > 
 # Test the current password
 TEST_PASS=`mysql --defaults-file=.DB_DEFAULTS $DB_NAME -e "show tables" 2>&1`
 if [ `echo $TEST_PASS | grep -c 'ERROR 1045'` == 1 ]; then
-    # Use the provisioner pasword to cange the password
+    # Use the provisioner password to change the password
     echo -e "[client]\npassword=provisioner_password\nhost=$DB_SERVER\nuser=$DB_USERNAME" > .DB_DEFAULTS
     $LOGGER "Detected provisioner passwrod, reseting database password."
     mysql --defaults-file=.DB_DEFAULTS $DB_NAME -e "SET PASSWORD FOR '$DB_USERNAME'@'%' = password('$DB_PASSWORD')"
     RV=$?
     if [ $RV != 0 ]; then
         $LOGGER "ERROR: Could not access mysql database ($RV), aborting."
+        rm -f .DB_DEFAULTS
         exit $RV
     fi
     # Rewrite defaults file with updated password
