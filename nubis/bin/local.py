@@ -15,13 +15,13 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': nubis.db_name,
-        'USER': nubis.db_username,
-        'PASSWORD': nubis.db_password,
-        'HOST': nubis.app_db_server,
+        'NAME': nubis.DB_NAME,
+        'USER': nubis.DB_USERNAME,
+        'PASSWORD': nubis.DB_PASSWORD,
+        'HOST': nubis.DB_SERVER,
     }
 }
 
-SECRET_KEY = nubis.app_secret_key
+SECRET_KEY = nubis.APP_SECRET_KEY
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

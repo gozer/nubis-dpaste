@@ -3,44 +3,50 @@
   {
     "type": "shell",
     "inline": [
-      "sudo mkdir -p /var/www/dpaste",
-      "sudo chmod 777 /var/www/dpaste",
-      "sudo python -m compileall /var/www/dpaste"
+        "sudo mkdir -p /var/www/dpaste",
+        "sudo chmod 755 /var/www/dpaste"
     ],
-    "order": "5"
+    "order": "1"
   },
   {
     "type": "file",
     "source": "dpaste/",
     "destination": "/var/www/dpaste",
-    "order": "6"
+    "order": "2"
   },
   {
     "type": "file",
     "source": "nubis/bin/local.py",
     "destination": "/var/www/dpaste/dpaste/settings/local.py",
-    "order": "7"
+    "order": "3"
   },
   {
     "type": "file",
     "source": "nubis/bin/wsgi.py",
     "destination": "/var/www/dpaste/wsgi.py",
-    "order": "8"
-  },
-  {
-    "type": "file",
-    "source": "nubis/bin/migrate",
-    "destination": "/tmp/nubis-migrate",
-    "order": "8"
+    "order": "4"
   },
   {
     "type": "shell",
     "inline": [
-      "sudo mv /tmp/nubis-migrate /usr/local/bin/nubis-migrate",
-      "sudo chown root:root /usr/local/bin/nubis-migrate",
-      "sudo chmod 755 /usr/local/bin/nubis-migrate"
+        "sudo python -m compileall /var/www/dpaste"
     ],
-    "order": "9"
+    "order": "11"
+  },
+  {
+    "type": "file",
+    "source": "nubis/bin/migrate",
+    "destination": "/tmp/migrate",
+    "order": "12"
+  },
+  {
+    "type": "shell",
+    "inline": [
+        "sudo mv /tmp/migrate /etc/nubis.d/migrate",
+        "sudo chown root:root /etc/nubis.d/migrate",
+        "sudo chmod 755 /etc/nubis.d/migrate"
+    ],
+    "order": "13"
   }
 ]
 }

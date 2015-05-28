@@ -8,7 +8,7 @@ $vhost_name = 'dpaste'
 $install_root = '/var/www/dpaste'
 $wsgi_path = '/var/www/dpaste/wsgi.py'
 $static_root = '/var/www/dpaste/dpaste/static/'
-$port = 8080
+$port = 80
 
 include nubis_discovery
 
@@ -22,22 +22,28 @@ nubis::discovery::service { 'dpaste':
 class {
     'apache':
         default_mods        => true,
+        default_vhost       => false,
         default_confd_files => false;
     'apache::mod::wsgi':
         wsgi_socket_prefix => '/var/run/wsgi';
+    'apache::mod::remoteip':
+        proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
 }
 
 apache::vhost { $::vhost_name:
     port                        => $port,
     default_vhost               => true,
+    docroot                     => $::install_root,
+    docroot_owner               => 'ubuntu',
+    docroot_group               => 'ubuntu',
+    block                       => ['scm'],
+    setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
+    access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     aliases                     => [
-        # TODO, what do do about this? What if an app doesn't need this?
-        {
-         alias        => '/static',
-         path         => $::static_root
+        { alias => '/static',
+          path  => $::static_root
         }
     ],
-    docroot                     => $::install_root,
     wsgi_application_group      => '%{GLOBAL}',
     wsgi_daemon_process         => 'wsgi',
     wsgi_daemon_process_options => {
@@ -47,8 +53,9 @@ apache::vhost { $::vhost_name:
     },
     wsgi_import_script          => $::wsgi_path,
     wsgi_import_script_options  => {
-      'process-group'        => 'wsgi',
-      'application-group'    => '%{GLOBAL}' },
+      process-group     => 'wsgi',
+      application-group => '%{GLOBAL}'
+    },
     wsgi_process_group          => 'wsgi',
-    wsgi_script_aliases         => { '/'    => $::wsgi_path },
+    wsgi_script_aliases         => { '/' => $::wsgi_path },
 }
