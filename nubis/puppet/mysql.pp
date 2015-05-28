@@ -1,7 +1,7 @@
-$root_password = 'asillypassword'
+$root_password = 'provisioner_password'
 $db_name = 'dpaste'
 $username = 'dpaste'
-$password = 'anothersillypassword'
+$password = 'provisioner_password'
 
 class { '::mysql::server':
     root_password    => $::root_password,
