@@ -25,7 +25,7 @@ if [ ${NUBIS_MIGRATE:-0} == '0' ]; then
 fi
 
 # Set up the consul url
-CONSUL="http://localhost:8500/v1/kv/$NUBIS_PROJECT/$NUBIS_ENVIRONMENT/config"
+CONSUL="http://localhost:8500/v1/kv/$NUBIS_STACK/$NUBIS_ENVIRONMENT/config"
 
 # We run early, so we need to account for Consul's startup time, unfortunately, magic isn't
 # always free

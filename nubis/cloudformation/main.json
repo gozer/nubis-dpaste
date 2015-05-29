@@ -3,7 +3,7 @@
   "Description": "Demo dpaste deployment for the nubis project.",
   "Parameters": {
     "ServiceName": {
-      "Description": "Name of this deployment",
+      "Description": "Name of the service",
       "Type": "String"
     },
     "Environment": {
@@ -23,7 +23,7 @@
       "Type": "String"
     },
     "KeyName": {
-      "Description": "Existing ssh key to deploy to instances",
+      "Description": "Existing ssh key to deploy to EC2 instances",
       "Type": "String"
     },
     "TechnicalOwner": {
@@ -55,6 +55,9 @@
         "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/master/ec2.template",
         "TimeoutInMinutes": "60",
         "Parameters": {
+          "StackName": {
+            "Ref": "AWS::StackName"
+          },
           "ServiceName": {
             "Ref": "ServiceName"
           },
@@ -95,7 +98,7 @@
         "TimeoutInMinutes": "60",
         "Parameters": {
           "ServiceName": {
-            "Ref": "AWS::StackName"
+            "Ref": "ServiceName"
           },
           "TechnicalOwner": {
             "Ref": "TechnicalOwner"
