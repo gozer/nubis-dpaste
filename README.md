@@ -2,75 +2,74 @@
 This is a Nubis deployment of the [dpaste](https://github.com/bartTC/dpaste) application. The purpose of this project is to demonstrate an example of a django / python deployment. This repository is an example of a "deployment repository", in other words a repository that does not contain any application code.
 
 ## Repository Structure
-The structure of the repository is quite simple. The application is installed as a git submodule. There is a directory called *nubis* which contains all of the nubis modules necessary to deploy the application.
+The structure of the repository is quite simple. The application is installed as a git submodule. There is a directory called *nubis* which contains all of the bits necessary to deploy the application.
 
 
 ## Deployment Process
-Currently there are a few steps necessary to deploy this project. We intend to simplify this process going forward. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the Packer bits and jump straight to the [Terraform](#terraform) section.
+Currently there are two steps necessary to deploy this project. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the [Nubis Builder](#nubis-builder) bits and jump straight to the [Cloudformation](#cloudformation) section.
 
 
 ### Puppet
-We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our VM. Puppet installs and configures services such as *Apache* and *MySql*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step.
+We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our instance. Puppet installs and configures services such as *Apache* and *MySql*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step. This means that there is nothing for you to do here, however yo should be aware of this for when you deploy your own applications.
 
 
-### Packer
-[Packer](https://www.packer.io/) is the piece that will build our AMI. It is made up of a few pieces:
+### Nubis Builder
+[Nubis Builder](https://github.com/Nubisproject/nubis-builder) is the piece that will build our Amazon Machine Image (AMI). It is made up of a two pieces:
 
-1. The [main.json](nubis/packer/main.json) file which contains:
-    * A *builders* statement describing where to build the AMI
-    * One or more *provisioners* statements for calling puppet standalone and any bootstrapping commands for the application
-2. A [variables.json](nubis/packer/variables.json-dist) file which contains things like:
-    * AWS credentials
-    * base AMI ID
+1. The [main.json](nubis/builder/provisioners.json) file which:
+    * Contains one or more *provisioners* statements for calling  any bootstrapping commands for the application
+    * Invokes a puppet standalone run through nubis-builder
+    * Invokes a *builders* statement describing where to build the AMI, also run through nubis-builder
+2. A [project.json](nubis/builder/project.json) file which contains settings for nubis-builder
 
-To run packer, from the repository root you first need to create your *variables.json* file, for which there is a template provided (variables.json-dist). After which you simply call packer like so:
+To run nubis-builder, from the repository root you first need to ensure that you have installed the [prerequisites](https://github.com/Nubisproject/nubis-docs/blob/master/PREREQUISITES.md) and [nubis-builder](https://github.com/Nubisproject/nubis-builder#builder-quick-start). After which you simply call nubis-builder like so:
 ```bash
-packer build -var-file=nubis/packer/variables.json -var release=0 -var build=1 nubis/packer/main.json
+nubis-builder build
 ```
-This takes around *11m 18.488s* to complete.
+This takes around *8m7.350s* to complete.
 
 
-### Terraform
-The next step is to take the shiny new AMI that Packer built and deploy it. This is where [Terraform](https://www.terraform.io/) comes into play. Terraform is our infrastructure deployment framework, but not to worry it is really not as complicated as its name implies. It consists of a few files:
+### Cloudformation
+The next step is to take the shiny new AMI that nubis-builder built and deploy it. This is where [Cloudformation](http://aws.amazon.com/cloudformation/) comes into play. Cloudformation is our infrastructure deployment framework, but not to worry it is really not as complicated as its name implies. It consists of a few files:
 
-1. [inputs.tf](nubis/terraform/inputs.tf) simply lists the variables you might need to provide
-2. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes place. This is where you describe your infrastructure. Thisgs like EC2 instances, security groups, ELBs and so on.
-3. [outputs.tf](nubis/terraform/outputs.tf) describes what information from the build we want to make available (via Consul) for later reference.
-4. [terraform.tfvars](nubis/terraform/terraform.tfvars-dist) is where you will set your AWS credentials and such.
+0. [parameters.json-dist](nubis/cloudformation/parameters.json-dist) simply lists the inputs you will need to provide
+0. [main.json](nubis/cloudformation/main.json) is where the real heavy lifting takes place. This is where you describe your infrastructure. Things like EC2 instances, security groups, ELBs and so on.
+0. [README.md](nubis/cloudformation/README.md) contains some handy cut-and-paste cheat-sheet style commands for your future reference.
 
-To run terraform, from the repository root you first need to create your *terraform.tfvars* file, for which there is a template provided (terraform.tfvars-dist). After which you simply call terraform like so:
 
-To see what resources will be created, destroyed, or refreshed:
+To execute Cloudformation, from the repository root you first need to create your *parameters.json* file, for which there is a template provided (parameters.json-dist). After which you will execute Cloudformation.
+
+NOTE: You will likely need to change the *stack-name* from *dpaste-xxx* to something unique as each stack requires a unique name.
+
+Also, if you skiped the build step above you can use the pre-built ami *ami-7bbb844b* to deploy with.
+
+To launch your stack:
 ```bash
-terraform plan -var-file=nubis/terraform/terraform.tfvars nubis/terraform/
+aws cloudformation create-stack --template-body file://nubis/cloudformation/main.json --parameters file://nubis/cloudformation/parameters.json --stack-name dpaste-xxx
 ```
-To apply the plan (do the work)
-```bash
-terraform apply -var-file=nubis/terraform/terraform.tfvars nubis/terraform/
-```
-This takes around *0m 35.162s*, which you can see is quite speedy.
+This takes around *6m 30s*, which you can see is not exactly speedy (mostly due to Route53 in this case).
 
+Once you are finished with your app you will likely wish to delete it and clear the consul data:
+```bash
+aws cloudformation delete-stack --stack-name dpaste-xxx
+
+nubis-consul --stack-name dpaste-xxx --settings nubis/cloudformation/parameters.json delete
+```
 
 ## Quick Commands
-Edit both *nubis/packer/variables.json* and *nubis/terraform/terraform.tfvars*
+
 ```bash
 git clone https://github.com/mozilla/nubis-dpaste.git
 
 git submodule update --init --recursive
 
-packer build -var-file=nubis/packer/variables.json -var release=0 -var build=1 nubis/packer/main.json
+nubis-builder build
 
-terraform apply -var-file=nubis/terraform/terraform.tfvars nubis/terraform/
+*Edit nubis/cloudformation/parameters.json*
+
+aws cloudformation create-stack --template-body file://nubis/cloudformation/main.json --parameters file://nubis/cloudformation/parameters.json --stack-name dpaste-xxx
+
+aws cloudformation delete-stack --stack-name dpaste-xxx
+
+nubis-consul --stack-name dpaste-xxx --settings nubis/cloudformation/parameters.json delete
 ```
-
-
-## TODO
-We have a lot of work to do before this project is ready for easy consumption. Some of those things are:
-* Auto-generate secrets
-* Integrate secrets with proper storage location (Consul?)
-* Generate useful Terraform outputs for Consul
-* Integrate with nubis-ci
-* Investigate method to simplify the deployment process
-* Dress up consuming Packer builds (AMIs) with Terraform (AKA stop hardcoding AMI IDs)
-* Fix Terraform main.tf IAM id (requires Consul integration)
-* Research Terraform work flow patterns

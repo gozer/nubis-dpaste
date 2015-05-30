@@ -2,11 +2,11 @@
   {
     "ParameterKey": "ServiceName",
     "ParameterValue": "dpaste"
-  }, 
+  },
   {
     "ParameterKey": "Environment",
     "ParameterValue": "sandbox"
-  }, 
+  },
   {
     "ParameterKey": "KeyName",
     "ParameterValue": "key"
