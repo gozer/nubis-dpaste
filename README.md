@@ -1,4 +1,4 @@
-﻿# nubis-dpaste
+# nubis-dpaste
 This is a Nubis deployment of the [dpaste](https://github.com/bartTC/dpaste) application. The purpose of this project is to demonstrate an example of a django / python deployment. This repository is an example of a "deployment repository", in other words a repository that does not contain any application code.
 
 ## Repository Structure
