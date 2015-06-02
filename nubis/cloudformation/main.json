@@ -40,7 +40,7 @@
       "prod": {
         "InstanceType": "m3.large"
       },
-      "dev": {
+      "stage": {
         "InstanceType": "m3.medium"
       },
       "sandbox": {

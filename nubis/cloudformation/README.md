@@ -69,7 +69,13 @@ nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameter
 ### Login
 If you have only one EC2 instance and your ssh keys are on the jumphost, you can login by:
 ```bash
-ssh -A -t ec2-user@jumphost.sandbox.nubis.allizom.org "ssh -A -t ubuntu@$(nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameters.json get-ec2-instance-ip)"
+ssh -A -t ec2-user@jumphost.sandbox.us-west-2.nubis.allizom.org "ssh -A -t ubuntu@$(nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameters.json get-ec2-instance-ip)"
+```
+
+### Visit site
+The stack creates a route53 hosted zone and a cname record. You can set that up in your dns system or you can simply visit the dns name of the load balancer. To get the dns name of the load balancer:
+```bash
+aws cloudformation describe-stacks --query 'Stacks[*].Outputs[?OutputKey == `ELBDNSName`].OutputValue' --output text --stack-name nubis-dpaste
 ```
 
 ### Delete
