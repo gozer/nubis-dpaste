@@ -63,13 +63,13 @@ aws cloudformation update-stack --template-body file://nubis/cloudformation/main
 ### Update Consul
 After creating or updating a stack you might need to update Consul. Run this command to take any (properly described) Cloudformation outputs and insert or update them in Consul:
 ```bash
-nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameters.json get-and-update
+nubis-consul --settings nubis/cloudformation/parameters.json --stack-name nubis-dpaste get-and-update
 ```
 
 ### Login
 If you have only one EC2 instance and your ssh keys are on the jumphost, you can login by:
 ```bash
-ssh -A -t ec2-user@jumphost.sandbox.us-west-2.nubis.allizom.org "ssh -A -t ubuntu@$(nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameters.json get-ec2-instance-ip)"
+ssh -A -t ec2-user@jumphost.sandbox.us-west-2.nubis.allizom.org "ssh -A -t ubuntu@$(nubis-consul --settings nubis/cloudformation/parameters.json --stack-name nubis-dpaste get-ec2-instance-ip)"
 ```
 
 ### Visit site
@@ -86,7 +86,7 @@ aws cloudformation delete-stack --stack-name nubis-dpaste
 
 After deleting the stack, be sure to remove the Consul data"
 ```bash
-nubis-consul --stack-name nubis-dpaste --settings nubis/cloudformation/parameters.json delete
+nubis-consul --settings nubis/cloudformation/parameters.json --stack-name nubis-dpaste delete
 ```
 
 ## Nested Stacks

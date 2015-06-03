@@ -22,6 +22,10 @@ package { 'apg':
   require  => Exec['apt-get update'],
 }
 
+file { '/usr/var':
+  ensure => directory,
+}
+
 include nubis_configuration
 
 nubis::configuration{ 'dpaste':
