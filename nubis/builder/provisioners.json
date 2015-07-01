@@ -21,12 +21,6 @@
     "order": "3"
   },
   {
-    "type": "file",
-    "source": "nubis/bin/wsgi.py",
-    "destination": "/var/www/dpaste/wsgi.py",
-    "order": "4"
-  },
-  {
     "type": "shell",
     "inline": [
         "sudo python -m compileall /var/www/dpaste"
