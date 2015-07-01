@@ -8,6 +8,11 @@ python::requirements { '/var/www/dpaste/requirements.txt':
   require => Class['python']
 }
 
+file { "/var/www/dpaste/wsgi.py":
+  ensure => present,
+  source => "puppet:///nubis/files/wsgi.py",
+}
+
 exec { "apt-get update":
     command => "/usr/bin/apt-get update",
 }
