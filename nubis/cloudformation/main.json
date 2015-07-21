@@ -52,7 +52,7 @@
     "EC2Stack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/master/ec2.template",
+        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/v0.9.0/ec2.template",
         "TimeoutInMinutes": "60",
         "Parameters": {
           "StackName": {
@@ -94,7 +94,7 @@
     "ELBStack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/master/elb.template",
+        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/v0.9.0/elb.template",
         "TimeoutInMinutes": "60",
         "Parameters": {
           "ServiceName": {
@@ -113,7 +113,7 @@
     "Route53Stack": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/master/route53.template",
+        "TemplateURL": "https://s3.amazonaws.com/nubisproject-stacks/v0.9.0/route53.template",
         "TimeoutInMinutes": "60",
         "Parameters": {
           "DNSName": {
