@@ -1,66 +1,48 @@
 # Change Log
 
-## [v0.9.0](https://github.com/nubisproject/nubis-dpaste/tree/v0.9.0) (2015-07-21)
+## [v0.9.0](https://github.com/nubisproject/nubis-skel/tree/v0.9.0) (2015-07-10)
+
+[Full Changelog](https://github.com/nubisproject/nubis-skel/compare/v0.9.0-beta...v0.9.0)
+
+**Closed issues:**
+
+- Produce an nubis-skel release [\#6](https://github.com/Nubisproject/nubis-skel/issues/6)
 
 **Merged pull requests:**
 
-- Add StacksVersion argument, helps along nubisproject/nubis-stacks\#41 [\#30](https://github.com/Nubisproject/nubis-dpaste/pull/30) ([gozer](https://github.com/gozer))
+- Updating changelog for v0.9.0 release [\#14](https://github.com/Nubisproject/nubis-skel/pull/14) ([tinnightcap](https://github.com/tinnightcap))
 
-- convert wsgi.py to puppet:///nubis/ for better example [\#29](https://github.com/Nubisproject/nubis-dpaste/pull/29) ([gozer](https://github.com/gozer))
+- Add example of puppet file copy/provisioner [\#12](https://github.com/Nubisproject/nubis-skel/pull/12) ([tinnightcap](https://github.com/tinnightcap))
 
-- Rename KeyName to SSHKeyName, for nubisproject/nubis-docs\#35 [\#28](https://github.com/Nubisproject/nubis-dpaste/pull/28) ([tinnightcap](https://github.com/tinnightcap))
+- Add StacksVersion argument, helps along nubisproject/nubis-stacks\#41 [\#11](https://github.com/Nubisproject/nubis-skel/pull/11) ([gozer](https://github.com/gozer))
 
-- use curl instead of ec2metadata [\#27](https://github.com/Nubisproject/nubis-dpaste/pull/27) ([gozer](https://github.com/gozer))
+- v0.9.0-beta1 release candidate [\#10](https://github.com/Nubisproject/nubis-skel/pull/10) ([tinnightcap](https://github.com/tinnightcap))
 
-- Fix static directory bug and doc cleanup [\#26](https://github.com/Nubisproject/nubis-dpaste/pull/26) ([tinnightcap](https://github.com/tinnightcap))
+- Rename KeyName to SSHKeyName, for nubisproject/nubis-docs\#35 [\#9](https://github.com/Nubisproject/nubis-skel/pull/9) ([tinnightcap](https://github.com/tinnightcap))
 
-- Add elb output instructions, update dev to stage [\#25](https://github.com/Nubisproject/nubis-dpaste/pull/25) ([tinnightcap](https://github.com/tinnightcap))
+- Update readme to include .gitignore steps [\#8](https://github.com/Nubisproject/nubis-skel/pull/8) ([tinnightcap](https://github.com/tinnightcap))
 
-- remove U+FEFF bom marker from README.md [\#24](https://github.com/Nubisproject/nubis-dpaste/pull/24) ([floatingatoll](https://github.com/floatingatoll))
+## [v0.9.0-beta](https://github.com/nubisproject/nubis-skel/tree/v0.9.0-beta) (2015-06-30)
 
-- fix InstanceTypeMap for stage [\#23](https://github.com/Nubisproject/nubis-dpaste/pull/23) ([gozer](https://github.com/gozer))
+[Full Changelog](https://github.com/nubisproject/nubis-skel/compare/v0.9.0-alfa...v0.9.0-beta)
 
-- Add login command to README [\#22](https://github.com/Nubisproject/nubis-dpaste/pull/22) ([tinnightcap](https://github.com/tinnightcap))
+**Merged pull requests:**
 
-- Update documentation to refelct most current state [\#21](https://github.com/Nubisproject/nubis-dpaste/pull/21) ([tinnightcap](https://github.com/tinnightcap))
+- Updates leading to release [\#7](https://github.com/Nubisproject/nubis-skel/pull/7) ([tinnightcap](https://github.com/tinnightcap))
 
-- Change dev to stage [\#20](https://github.com/Nubisproject/nubis-dpaste/pull/20) ([tinnightcap](https://github.com/tinnightcap))
+## [v0.9.0-alfa](https://github.com/nubisproject/nubis-skel/tree/v0.9.0-alfa) (2015-06-29)
 
-- Make dpaste multi deployment capabale [\#19](https://github.com/Nubisproject/nubis-dpaste/pull/19) ([tinnightcap](https://github.com/tinnightcap))
+**Merged pull requests:**
 
-- Multi deployment fix, typo fixes, remove terraform bits [\#18](https://github.com/Nubisproject/nubis-dpaste/pull/18) ([tinnightcap](https://github.com/tinnightcap))
+- Fix typo in cloudformation readme [\#5](https://github.com/Nubisproject/nubis-skel/pull/5) ([tinnightcap](https://github.com/tinnightcap))
 
-- Puppet & packer clean ups [\#17](https://github.com/Nubisproject/nubis-dpaste/pull/17) ([tinnightcap](https://github.com/tinnightcap))
+- Renaming from nubis-blank to nubis-skel [\#4](https://github.com/Nubisproject/nubis-skel/pull/4) ([tinnightcap](https://github.com/tinnightcap))
 
-- Finish cloudformation and add password autogen [\#16](https://github.com/Nubisproject/nubis-dpaste/pull/16) ([tinnightcap](https://github.com/tinnightcap))
+- Change dev to stage [\#3](https://github.com/Nubisproject/nubis-skel/pull/3) ([tinnightcap](https://github.com/tinnightcap))
 
-- Add Nested CF templates [\#15](https://github.com/Nubisproject/nubis-dpaste/pull/15) ([gozer](https://github.com/gozer))
+- Add cludformation and edit for current structure [\#2](https://github.com/Nubisproject/nubis-skel/pull/2) ([tinnightcap](https://github.com/tinnightcap))
 
-- Update README [\#14](https://github.com/Nubisproject/nubis-dpaste/pull/14) ([tinnightcap](https://github.com/tinnightcap))
-
-- Major conversion over to nubis-builder and confd integration [\#13](https://github.com/Nubisproject/nubis-dpaste/pull/13) ([gozer](https://github.com/gozer))
-
-- Convert python and pip to use python::requirements from base puppet [\#12](https://github.com/Nubisproject/nubis-dpaste/pull/12) ([gozer](https://github.com/gozer))
-
-- Use nubis::discovery to expose this apache instance to the world [\#11](https://github.com/Nubisproject/nubis-dpaste/pull/11) ([gozer](https://github.com/gozer))
-
-- puppet-lint [\#10](https://github.com/Nubisproject/nubis-dpaste/pull/10) ([gozer](https://github.com/gozer))
-
-- Bump [\#9](https://github.com/Nubisproject/nubis-dpaste/pull/9) ([bhourigan](https://github.com/bhourigan))
-
-- Refactoring build system to work with nubis-builder [\#8](https://github.com/Nubisproject/nubis-dpaste/pull/8) ([bhourigan](https://github.com/bhourigan))
-
-- Change to relative links in the readme [\#7](https://github.com/Nubisproject/nubis-dpaste/pull/7) ([tinnightcap](https://github.com/tinnightcap))
-
-- Fix fluent collector for apache logs [\#5](https://github.com/Nubisproject/nubis-dpaste/pull/5) ([gozer](https://github.com/gozer))
-
-- Adding fluentd [\#4](https://github.com/Nubisproject/nubis-dpaste/pull/4) ([tinnightcap](https://github.com/tinnightcap))
-
-- Required work for Jenkins integration [\#3](https://github.com/Nubisproject/nubis-dpaste/pull/3) ([gozer](https://github.com/gozer))
-
-- Removing secrets and other files [\#2](https://github.com/Nubisproject/nubis-dpaste/pull/2) ([tinnightcap](https://github.com/tinnightcap))
-
-- Update readme for content and formatting [\#1](https://github.com/Nubisproject/nubis-dpaste/pull/1) ([tinnightcap](https://github.com/tinnightcap))
+- Updating README.md [\#1](https://github.com/Nubisproject/nubis-skel/pull/1) ([bhourigan](https://github.com/bhourigan))
 
 
 
