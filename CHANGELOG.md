@@ -4,6 +4,8 @@
 
 **Merged pull requests:**
 
+- Updating changelog for v0.9.0 release [\#31](https://github.com/Nubisproject/nubis-dpaste/pull/31) ([tinnightcap](https://github.com/tinnightcap))
+
 - Add StacksVersion argument, helps along nubisproject/nubis-stacks\#41 [\#30](https://github.com/Nubisproject/nubis-dpaste/pull/30) ([gozer](https://github.com/gozer))
 
 - convert wsgi.py to puppet:///nubis/ for better example [\#29](https://github.com/Nubisproject/nubis-dpaste/pull/29) ([gozer](https://github.com/gozer))
