@@ -1,8 +1,18 @@
 # Change Log
 
+## [v1.0.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.0.0) (2015-08-31)
+
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v0.9.0...v1.0.0)
+
+**Merged pull requests:**
+
+- Adjust .gitignore to ignore multiregion paramaters files [\#35](https://github.com/Nubisproject/nubis-dpaste/pull/35) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v0.9.0](https://github.com/nubisproject/nubis-dpaste/tree/v0.9.0) (2015-07-21)
 
 **Merged pull requests:**
+
+- Updating changelog for v0.9.0 release [\#32](https://github.com/Nubisproject/nubis-dpaste/pull/32) ([tinnightcap](https://github.com/tinnightcap))
 
 - Updating changelog for v0.9.0 release [\#31](https://github.com/Nubisproject/nubis-dpaste/pull/31) ([tinnightcap](https://github.com/tinnightcap))
 
