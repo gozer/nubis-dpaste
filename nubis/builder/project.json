@@ -7,7 +7,7 @@
     ],
     "project_description": "Nubis Example Dpaste Application",
     "project_name": "nubis-dpaste",
-    "project_version": "0.33",
+    "project_version": "v1.1.0",
     "source_ami_project_name": "nubis-base"
   }
 }
