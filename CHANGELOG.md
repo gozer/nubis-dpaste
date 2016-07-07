@@ -1,14 +1,24 @@
 # Change Log
 
+## [v1.2.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.0) (2016-07-07)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.1.0...v1.2.0)
+
+**Merged pull requests:**
+
+- Update builder artifacts for v1.2.0 release [\#48](https://github.com/nubisproject/nubis-dpaste/pull/48) ([tinnightcap](https://github.com/tinnightcap))
+- Update builder artifacts for v1.2.0 release [\#47](https://github.com/nubisproject/nubis-dpaste/pull/47) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v1.1.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.1.0) (2016-04-18)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.0.1...v1.1.0)
 
 **Closed issues:**
 
 - Tag v1.1.0 release [\#33](https://github.com/nubisproject/nubis-dpaste/issues/33)
+- Tag v1.1.0 release [\#43](https://github.com/nubisproject/nubis-dpaste/issues/43)
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v1.1.0 release [\#46](https://github.com/nubisproject/nubis-dpaste/pull/46) ([tinnightcap](https://github.com/tinnightcap))
 - Update builder artifacts for v1.1.0 release [\#45](https://github.com/nubisproject/nubis-dpaste/pull/45) ([tinnightcap](https://github.com/tinnightcap))
 - Update versions for  release [\#44](https://github.com/nubisproject/nubis-dpaste/pull/44) ([tinnightcap](https://github.com/tinnightcap))
 
@@ -60,6 +70,7 @@
 - Finish cloudformation and add password autogen [\#16](https://github.com/nubisproject/nubis-dpaste/pull/16) ([tinnightcap](https://github.com/tinnightcap))
 - Add Nested CF templates [\#15](https://github.com/nubisproject/nubis-dpaste/pull/15) ([gozer](https://github.com/gozer))
 - Update README [\#14](https://github.com/nubisproject/nubis-dpaste/pull/14) ([tinnightcap](https://github.com/tinnightcap))
+- Major conversion over to nubis-builder and confd integration [\#13](https://github.com/nubisproject/nubis-dpaste/pull/13) ([gozer](https://github.com/gozer))
 - Convert python and pip to use python::requirements from base puppet [\#12](https://github.com/nubisproject/nubis-dpaste/pull/12) ([gozer](https://github.com/gozer))
 - Use nubis::discovery to expose this apache instance to the world [\#11](https://github.com/nubisproject/nubis-dpaste/pull/11) ([gozer](https://github.com/gozer))
 - puppet-lint [\#10](https://github.com/nubisproject/nubis-dpaste/pull/10) ([gozer](https://github.com/gozer))
