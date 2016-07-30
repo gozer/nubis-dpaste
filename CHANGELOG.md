@@ -1,10 +1,23 @@
 # Change Log
 
-## [v1.2.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.0) (2016-07-07)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.1.0...v1.2.0)
+## [v1.2.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.1) (2016-07-30)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.0...v1.2.1)
 
 **Merged pull requests:**
 
+- Update builder artifacts for v1.2.1 release [\#53](https://github.com/nubisproject/nubis-dpaste/pull/53) ([tinnightcap](https://github.com/tinnightcap))
+- Update builder artifacts for v1.3.0-dev release [\#51](https://github.com/nubisproject/nubis-dpaste/pull/51) ([tinnightcap](https://github.com/tinnightcap))
+
+## [v1.2.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.0) (2016-07-07)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.1.0...v1.2.0)
+
+**Closed issues:**
+
+- Tag v1.2.0 release [\#49](https://github.com/nubisproject/nubis-dpaste/issues/49)
+
+**Merged pull requests:**
+
+- Update CHANGELOG for v1.2.0 release [\#50](https://github.com/nubisproject/nubis-dpaste/pull/50) ([tinnightcap](https://github.com/tinnightcap))
 - Update builder artifacts for v1.2.0 release [\#48](https://github.com/nubisproject/nubis-dpaste/pull/48) ([tinnightcap](https://github.com/tinnightcap))
 - Update builder artifacts for v1.2.0 release [\#47](https://github.com/nubisproject/nubis-dpaste/pull/47) ([tinnightcap](https://github.com/tinnightcap))
 
