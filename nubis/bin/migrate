@@ -109,6 +109,23 @@ fi
 # Clean up
 rm -f .DB_DEFAULTS
 
+# Ensure confd has generated the settings file before running db migrations
+DPASTE_FILE='/etc/nubis-config/dpaste.sh'
+COUNT=0
+while [ "${FILE_EXISTS:--1}" != "0" ]; do
+    if [ ${COUNT} == "6" ]; then
+        $LOGGER "ERROR: Timeout while waiting for ${DPASTE_FILE}."
+        exit 1
+    fi
+    FILE_EXISTS=$(eval \[ -f /etc/nubis-config/dpaste.sh \]; echo $?)
+
+    if [ "${FILE_EXISTS}" != "0" ]; then
+      $LOGGER "${DPASTE_FILE} not ready yet (${FILE_EXISTS}). Sleeping 10 seconds before retrying..."
+      sleep 10
+      COUNT=${COUNT}+1
+    fi
+done
+
 # Run the database migrations
 #+ This command is safe to run multiple times
 $LOGGER "Performing DB migrations"
