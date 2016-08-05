@@ -1,10 +1,26 @@
 # Change Log
 
-## [v1.2.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.2) (2016-08-02)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.1...v1.2.2)
+## [v1.2.3](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.3) (2016-08-05)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.2...v1.2.3)
+
+**Fixed bugs:**
+
+- DB migrations sometimes fail [\#58](https://github.com/nubisproject/nubis-dpaste/issues/58)
 
 **Merged pull requests:**
 
+- Wait for the confd file before running migrate.sh [\#59](https://github.com/nubisproject/nubis-dpaste/pull/59) ([tinnightcap](https://github.com/tinnightcap))
+
+## [v1.2.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.2) (2016-08-02)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.1...v1.2.2)
+
+**Closed issues:**
+
+- Tag v1.2.2 release [\#55](https://github.com/nubisproject/nubis-dpaste/issues/55)
+
+**Merged pull requests:**
+
+- Update CHANGELOG for v1.2.2 release [\#57](https://github.com/nubisproject/nubis-dpaste/pull/57) ([tinnightcap](https://github.com/tinnightcap))
 - Update builder artifacts for v1.2.2 release [\#56](https://github.com/nubisproject/nubis-dpaste/pull/56) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v1.2.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.1) (2016-07-30)
