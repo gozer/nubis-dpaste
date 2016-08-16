@@ -129,7 +129,8 @@ done
 # Run the database migrations
 #+ This command is safe to run multiple times
 $LOGGER "Performing DB migrations"
-/var/www/dpaste/manage.py syncdb --migrate
+consul lock $NUBIS_STACK/$NUBIS_ENVIRONMENT/syncdb \
+    /var/www/dpaste/manage.py syncdb --migrate
 RV=$?
 if [ $RV != 0 ]; then
     $LOGGER "ERROR: Error running database migrations ($RV), aborting."
