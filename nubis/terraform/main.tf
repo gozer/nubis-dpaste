@@ -1,6 +1,5 @@
 module "worker" {
-  #source       = "github.com/nubisproject/nubis-terraform//worker?ref=master"
-  source       = "/home/gozer/opt/src/mozilla.org/gozer/nubis/terraform/worker"
+  source       = "github.com/nubisproject/nubis-terraform//worker?ref=master"
   region       = "${var.region}"
   environment  = "${var.environment}"
   account      = "${var.account}"
