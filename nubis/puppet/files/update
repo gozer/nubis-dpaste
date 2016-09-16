@@ -4,6 +4,7 @@
 NUBIS_STACK=$(nubis-metadata NUBIS_STACK)
 NUBIS_ENVIRONMENT=$(nubis-metadata NUBIS_ENVIRONMENT)
 
+# Build our Consul prefix
 CONSUL_PREFIX="$NUBIS_STACK/$NUBIS_ENVIRONMENT"
 
 # Load our settings (confd called us after generating this)
