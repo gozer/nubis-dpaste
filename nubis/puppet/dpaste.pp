@@ -13,6 +13,10 @@ class { 'python':
   dev        => true,
 }
 
+file { "/usr/var":
+  ensure => directory,
+}
+
 # pip install requirements
 python::requirements { '/var/www/dpaste/requirements.txt':
   require => Class['python']
