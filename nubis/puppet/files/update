@@ -6,13 +6,12 @@ NUBIS_ENVIRONMENT=$(nubis-metadata NUBIS_ENVIRONMENT)
 
 CONSUL_PREFIX="$NUBIS_STACK/$NUBIS_ENVIRONMENT"
 
-# Load our settings
+# Load our settings (confd called us after generating this)
 . /etc/nubis-config/dpaste.sh
 
 # Generate our App secret if there isn't one already
 
-APP_SECRET_KEY=$(consulate kv get "$CONSUL_PREFIX/config/APP_SECRET_KEY")
-if [ "$APP_SECRET_KEY" == "Null" ]; then
+if [ "$APP_SECRET_KEY" == "Null" ] || [ "$APP_SECRET_KEY" = "" ]; then
     APP_SECRET_KEY=$(uuidgen)
     consulate kv set "$CONSUL_PREFIX/config/APP_SECRET_KEY" "$APP_SECRET_KEY"
 
