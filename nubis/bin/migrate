@@ -25,25 +25,16 @@ if [ ${NUBIS_MIGRATE:-0} == '0' ]; then
 fi
 
 # Set up the consul url
-CONSUL="http://localhost:8500/v1/kv/$NUBIS_STACK/$NUBIS_ENVIRONMENT/config"
+CONSUL_PREFIX="$NUBIS_STACK/$NUBIS_ENVIRONMENT/config"
 
 # We run early, so we need to account for Consul's startup time, unfortunately, magic isn't
 # always free
-CONSUL_UP=-1
+CONSUL_UP=""
 COUNT=0
-while [ "$CONSUL_UP" != "0" ]; do
-    if [ ${COUNT} == "6" ]; then
-        $LOGGER "ERROR: Timeout while attempting to connect to consul."
-        exit 1
-    fi
-    QUERY=`curl -s ${CONSUL}?raw=1`
-    CONSUL_UP=$?
+while [ "$CONSUL_UP" != "Null" ] && [ "$CONSUL_UP" != "" ]; do
+    CONSUL_UP=`consulate kv get consul-ready`
 
-    if [ "$QUERY" != "" ]; then
-        CONSUL_UP=-2
-    fi
-
-    if [ "$CONSUL_UP" != "0" ]; then
+    if [ "$CONSUL_UP" != "Null" ] && [ "$CONSUL_UP" != "" ] ; then
       $LOGGER "Consul not ready yet ($CONSUL_UP). Sleeping 10 seconds before retrying..."
       sleep 10
       COUNT=${COUNT}+1
@@ -51,63 +42,12 @@ while [ "$CONSUL_UP" != "0" ]; do
 done
 
 # Generate and set the secrets for the app
-DB_NAME=`curl -s ${CONSUL}'/DB_NAME?raw=1'`
-if [ "$DB_NAME" == "" ]; then
-    DB_NAME='dpaste'
-    curl -s -X PUT -d $DB_NAME $CONSUL/DB_NAME
-fi
-$LOGGER " + DB_NAME=$DB_NAME"
-
-DB_USERNAME=`curl -s ${CONSUL}'/DB_USERNAME?raw=1'`
-if [ "$DB_USERNAME" == "" ]; then
-    DB_USERNAME='dpaste'
-    curl -s -X PUT -d $DB_USERNAME $CONSUL/DB_USERNAME
-fi
-$LOGGER " + DB_USERNAME=$DB_USERNAME"
-
-DB_PASSWORD=`curl -s ${CONSUL}'/DB_PASSWORD?raw=1'`
-if [ "$DB_PASSWORD" == "" ]; then
-    DB_PASSWORD=`makepasswd --minchars=12 --maxchars=16`
-    curl -s -X PUT -d $DB_PASSWORD $CONSUL/DB_PASSWORD
-fi
-$LOGGER " + DB_PASSWORD=$DB_PASSWORD"
-
-DB_SERVER=`curl -s ${CONSUL}'/DB_SERVER?raw=1'`
-if [ "$DB_SERVER" == "" ]; then
-    DB_SERVER='localhost'
-    curl -s -X PUT -d $DB_SERVER $CONSUL/DB_SERVER
-fi
-$LOGGER " + DB_SERVER=$DB_SERVER"
-
-APP_SECRET_KEY=`curl -s ${CONSUL}'/APP_SECRET_KEY?raw=1'`
+APP_SECRET_KEY=`consulate kv get $CONSUL_PREFIX/APP_SECRET_KEY`
 if [ "$APP_SECRET_KEY" == "" ]; then
     APP_SECRET_KEY=`uuidgen`
-    curl -s -X PUT -d $APP_SECRET_KEY $CONSUL/APP_SECRET_KEY
+    consulate kv get $CONSUL_PREFIX/APP_SECRET_KEY $APP_SECRET_KEY    
 fi
 $LOGGER " + APP_SECRET_KEY=$APP_SECRET_KEY"
-
-# Reset the database password on first run
-# Create mysql defaults file
-echo -e "[client]\npassword=$DB_PASSWORD\nhost=$DB_SERVER\nuser=$DB_USERNAME" > .DB_DEFAULTS
-# Test the current password
-TEST_PASS=`mysql --defaults-file=.DB_DEFAULTS $DB_NAME -e "show tables" 2>&1`
-if [ `echo $TEST_PASS | grep -c 'ERROR 1045'` == 1 ]; then
-    # Use the provisioner password to change the password
-    echo -e "[client]\npassword=provisioner_password\nhost=$DB_SERVER\nuser=$DB_USERNAME" > .DB_DEFAULTS
-    $LOGGER "Detected provisioner passwrod, reseting database password."
-    mysql --defaults-file=.DB_DEFAULTS $DB_NAME -e "SET PASSWORD FOR '$DB_USERNAME'@'%' = password('$DB_PASSWORD')"
-    RV=$?
-    if [ $RV != 0 ]; then
-        $LOGGER "ERROR: Could not access mysql database ($RV), aborting."
-        rm -f .DB_DEFAULTS
-        exit $RV
-    fi
-    # Rewrite defaults file with updated password
-    echo -e "[client]\npassword=$DB_PASSWORD\nhost=$DB_SERVER\nuser=$DB_USERNAME" > .DB_DEFAULTS
-fi
-
-# Clean up
-rm -f .DB_DEFAULTS
 
 # Ensure confd has generated the settings file before running db migrations
 DPASTE_FILE='/etc/nubis-config/dpaste.sh'

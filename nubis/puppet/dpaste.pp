@@ -13,27 +13,22 @@ file { "/var/www/dpaste/wsgi.py":
   source => "puppet:///nubis/files/wsgi.py",
 }
 
-exec { "apt-get update":
-    command => "/usr/bin/apt-get update",
-}
-
-package { 'makepasswd':
-  ensure => '1.10-9',
-  require  => Exec['apt-get update'],
-}
-
-package { 'apg':
+file { "/var/www/dpaste/dpaste/settings/local.py": 
   ensure => present,
-  require  => Exec['apt-get update'],
-}
-
-file { '/usr/var':
-  ensure => directory,
+  source => "puppet:///nubis/files/local.py",
 }
 
 include nubis_configuration
 
+file { "/usr/local/bin/dpaste-update":
+  ensure => present,
+  source => "puppet:///nubis/files/update",
+  owner  => root,
+  group  => root,
+  mode   => '0755',
+}
+
 nubis::configuration{ 'dpaste':
   format => "sh",
-  reload => "apache2ctl graceful",
+  update => "/usr/local/bin/dpaste-update"
 }
