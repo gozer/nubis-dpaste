@@ -30,5 +30,5 @@ file { "/usr/local/bin/dpaste-update":
 
 nubis::configuration{ 'dpaste':
   format => "sh",
-  update => "/usr/local/bin/dpaste-update"
+  reload => "/usr/local/bin/dpaste-update"
 }
