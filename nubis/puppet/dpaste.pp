@@ -1,9 +1,19 @@
+# Install mysql client libraries
+include mysql::client
+
+# With python bindings too
+class { 'mysql::bindings':
+    python_enable => true
+}
+
+# Install/manage python with PIP
 class { 'python':
   version    => 'system',
   pip        => true,
   dev        => true,
 }
 
+# pip install requirements
 python::requirements { '/var/www/dpaste/requirements.txt':
   require => Class['python']
 }
@@ -17,6 +27,8 @@ file { "/var/www/dpaste/dpaste/settings/local.py":
   ensure => present,
   source => "puppet:///nubis/files/local.py",
 }
+
+# Use Nubis's autoconfiguration hooks to trigger out config reloads
 
 include nubis_configuration
 
