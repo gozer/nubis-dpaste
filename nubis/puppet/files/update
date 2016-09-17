@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Load Nubis settings
+NUBIS_STACK=$(nubis-metadata NUBIS_STACK)
+NUBIS_ENVIRONMENT=$(nubis-metadata NUBIS_ENVIRONMENT)
+
+# Build our Consul prefix
+CONSUL_PREFIX="$NUBIS_STACK/$NUBIS_ENVIRONMENT"
+
+# Load our settings (confd called us after generating this)
+. /etc/nubis-config/dpaste.sh
+
+# Generate our App secret if there isn't one already
+
+if [ "$APP_SECRET_KEY" == "Null" ] || [ "$APP_SECRET_KEY" = "" ]; then
+    APP_SECRET_KEY=$(uuidgen)
+    consulate kv set "$CONSUL_PREFIX/config/APP_SECRET_KEY" "$APP_SECRET_KEY"
+
+    # We changed something in Consul, we'll get re-invoked shortly
+    exit 0
+fi
+
+# Perform necessary DB migrations
+# We use consul lock to ensure we never run this in parallel across instances
+
+consul lock "$CONSUL_PREFIX/syncdb" \
+    /var/www/dpaste/manage.py syncdb --migrate
+
+# Restart Apache
+apache2ctl graceful

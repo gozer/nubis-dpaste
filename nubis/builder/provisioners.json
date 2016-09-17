@@ -15,32 +15,11 @@
     "order": "2"
   },
   {
-    "type": "file",
-    "source": "nubis/bin/local.py",
-    "destination": "/var/www/dpaste/dpaste/settings/local.py",
-    "order": "3"
-  },
-  {
     "type": "shell",
     "inline": [
         "sudo python -m compileall /var/www/dpaste"
     ],
     "order": "11"
-  },
-  {
-    "type": "file",
-    "source": "nubis/bin/migrate",
-    "destination": "/tmp/migrate",
-    "order": "12"
-  },
-  {
-    "type": "shell",
-    "inline": [
-        "sudo mv /tmp/migrate /etc/nubis.d/migrate",
-        "sudo chown root:root /etc/nubis.d/migrate",
-        "sudo chmod 755 /etc/nubis.d/migrate"
-    ],
-    "order": "13"
   }
 ]
 }
