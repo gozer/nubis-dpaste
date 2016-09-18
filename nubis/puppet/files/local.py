@@ -1,5 +1,4 @@
-from dpaste.settings import *
-import os
+from dpaste.settings.base import *
 
 import imp
 nubis = imp.load_source('nubis', '/etc/nubis-config/dpaste.sh')
