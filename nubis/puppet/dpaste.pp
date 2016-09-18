@@ -19,7 +19,10 @@ file { "/usr/var":
 
 # pip install requirements
 python::requirements { '/var/www/dpaste/requirements.txt':
-  require => Class['python']
+  require => [
+    Class['python'],
+    Class['mysql::bindings'],
+  ]
 }
 
 file { "/var/www/dpaste/wsgi.py":

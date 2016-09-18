@@ -1,5 +1,9 @@
-from dpaste.settings import *
-import os
+# After 2.8
+try:
+  from dpaste.settings.base import *
+# 2.8 and before
+except:
+  from dpaste.settings import *
 
 import imp
 nubis = imp.load_source('nubis', '/etc/nubis-config/dpaste.sh')
