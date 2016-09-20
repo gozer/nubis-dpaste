@@ -10,7 +10,7 @@ Currently there are two steps necessary to deploy this project. While these step
 
 
 ### Puppet
-We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our instance. Puppet installs and configures services such as *Apache* and *MySql*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step. This means that there is nothing for you to do here, however yo should be aware of this for when you deploy your own applications.
+We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our instance. Puppet installs and configures services such as *Apache* and *MySQL*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step. This means that there is nothing for you to do here, however yo should be aware of this for when you deploy your own applications.
 
 
 ### Nubis Builder
@@ -28,33 +28,131 @@ nubis-builder build
 ```
 This takes around *8m7.350s* to complete.
 
+### Terraform
 
-### Cloudformation
-The next step is to take the shiny new AMI that nubis-builder built and deploy it. This is where [Cloudformation](http://aws.amazon.com/cloudformation/) comes into play. Cloudformation is our infrastructure deployment framework, but not to worry it is really not as complicated as its name implies. It consists of a few files:
+The next step is to take the shiny new AMI that nubis-builder built and deploy it. This is where [Terraform](http://terraform.io) comes into play. Terraform is our infrastructure deployment framework, and it's a fantastic tool for the job. All in all, it consists of only a few files:
 
-0. [parameters.json-dist](nubis/cloudformation/parameters.json-dist) simply lists the inputs you will need to provide
-0. [main.json](nubis/cloudformation/main.json) is where the real heavy lifting takes place. This is where you describe your infrastructure. Things like EC2 instances, security groups, ELBs and so on.
+0. [terraform.tfvars-dist](nubis/terraform/terraform.tfvars-dist) simply lists the inputs you will need to provide
+0. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes place. This is where you describe your infrastructure. Things like worker pools, load balancers, DNS and so on.
+0. [outputs.tf](nubis/terraform/outputs.tf) is where you can define handy outputs from your deployment, like the final URL of the deployed application.
+0. [consul.tf](nubis/terraform/consul.tf) is where you can define the infrastructure settings your app needs access to.
 0. [README.md](nubis/cloudformation/README.md) contains some handy cut-and-paste cheat-sheet style commands for your future reference.
 
+To get ready to execute Terraform, first change your current directory to the [terraform/](nubis/terraform/) directory
 
-To execute Cloudformation, from the repository root you first need to create your *parameters.json* file, for which there is a template provided (parameters.json-dist). After which you will execute Cloudformation.
-
-NOTE: You will likely need to change the *stack-name* from *dpaste-xxx* to something unique as each stack requires a unique name.
-
-Also, if you skiped the build step above you can use the pre-built ami *ami-7bbb844b* to deploy with.
-
-To launch your stack:
 ```bash
-aws cloudformation create-stack --template-body file://nubis/cloudformation/main.json --parameters file://nubis/cloudformation/parameters.json --stack-name dpaste-xxx
+$> cd nubis/terraform
 ```
-This takes around *6m 30s*, which you can see is not exactly speedy (mostly due to Route53 in this case).
 
-Once you are finished with your app you will likely wish to delete it and clear the consul data:
+Then, to execute Terraform, you first need to create your *terraform.tfvars* file, for which there is a template provided (terraform.tfvars-dist). After which you will execute Terraform.
+
+NOTE: You will likely need to change the *service_name* from *dpaste-<username>* to something unique as each deployment requires a unique name.
+
+Also, if you skiped the build step above you can use the pre-built AMIs to deploy with:
+
+ * **us-west-2**: ami-XXX
+ * **us-east-1**: ami-YYY
+
+#### Terraform Get
+
+Terraform makes heavy uses of modules, and before we can successfully deploy an application with it, we need it to first download the modules it needs
+
 ```bash
-aws cloudformation delete-stack --stack-name dpaste-xxx
-
-nubis-consul --stack-name dpaste-xxx --settings nubis/cloudformation/parameters.json delete
+$> terraform get -update=true
+Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
+Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
+Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
+Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
+Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
 ```
+
+#### Terraform Plan
+
+Now, we are ready to plan our deployment. In terraform parlance, this means just previewing all the steps necessary to achieve the deployment we have specified, without actually making any changes to the infrastructure yet.
+
+```bash
+$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform plan
+2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
+2016/09/20 11:58:04 Looking up keyring for nubis-lab
+2016/09/20 11:58:04 Using session ****************XXXX, expires in 55m30.765625184s
+2016/09/20 11:58:04 Assuming role arn:aws:iam::XXXXXXXXXX:role/nubis/admin/gozer
+2016/09/20 11:58:04 Using role ****************YYYY, expires in 14m59.434980674s
+2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
+Refreshing Terraform state prior to plan...
+
+module.database.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.045480098 +0000 UTC)
+module.dns.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.046647692 +0000 UTC)
+module.worker.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.045973702 +0000 UTC)
+module.load_balancer.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.048851647 +0000 UTC)
+[...]
+-/+ module.worker.aws_autoscaling_group.asg
+[...]
+-/+ module.worker.aws_autoscaling_policy.down
+[...]
+-/+ module.worker.aws_autoscaling_policy.up
+[...]
+~ module.worker.aws_cloudwatch_metric_alarm.down
+[...]
+~ module.worker.aws_cloudwatch_metric_alarm.up
+[...]
+-/+ module.worker.aws_launch_configuration.launch_config
+[...]
+
+Plan: 4 to add, 2 to change, 4 to destroy.Plan: 4 to add, 2 to change, 4 to destroy.
+```
+
+A few important things of note here, for completeness.
+
+First, notice **CONSUL_HTTP_SSL_VERIFY=0**, this is an unfortunate side-effect of not yet
+being able to verify the SSL certificate of the Consul endpoint, and is especially annoying for developer launches, as it can't be set anywhere but in the environemnt at the moment. Save yourself some trouble in the future and stick it somewhere in your *~/.bash_profile*
+
+Second, for security, we've wrapped the invocation of Terraform with aws-vault, so we don't have to directly manage or manipulate AWS credentials.
+
+Third, we could also have passed in variables with the -var argument, instead of in the variables file. Command-line arguments take precedence over the contents of the file. So to plan for a new AMI, we could have instead done:
+
+```bash
+$> terraform plan -var ami=ami-XYZ123
+```
+
+And finally, the output of Terraform's plan shows precisely what steps will be taken, and they are quite human parseable. In this example, for instance, we can see this deploy will change an autoscaling group, a launch configuration, and some associated autoscaling policies and cloudwatch alarms.
+
+Nothing has hapenned yet.
+
+#### Terraform Apply
+
+Now that we have reviewed the proposed changes, we can now apply them with:
+
+```
+$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform apply
+2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
+2016/09/20 11:58:04 Looking up keyring for nubis-lab
+2016/09/20 11:58:04 Using session ****************XXXX, expires in 55m30.765625184s
+2016/09/20 11:58:04 Assuming role arn:aws:iam::XXXXXXXXXX:role/nubis/admin/gozer
+2016/09/20 11:58:04 Using role ****************YYYY, expires in 14m59.434980674s
+2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
+Refreshing Terraform state prior to plan...
+
+module.database.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.045480098 +0000 UTC)
+module.dns.info.terraform_remote_state.info: Refreshing state... (ID: 2016-09-20 15:55:32.046647692 +0000 UTC)
+[...]
+module.worker.aws_launch_configuration.launch_config: Creating...
+module.worker.aws_launch_configuration.launch_config: Creation complete
+module.worker.aws_autoscaling_group.asg: Creating...
+module.worker.aws_autoscaling_group.asg: Still creating... (10s elapsed)
+module.worker.aws_autoscaling_group.asg: Still creating... (20s elapsed)
+module.worker.aws_autoscaling_group.asg: Creation complete
+module.worker.aws_cloudwatch_metric_alarm.up: Modifying...
+module.worker.aws_cloudwatch_metric_alarm.down: Modifying...
+module.worker.aws_autoscaling_group.asg: Destroying...
+[...]
+Apply complete! Resources: 4 added, 2 changed, 4 destroyed.
+
+Outputs:
+
+  address = https://www.dpaste-<username>.<env>.<env>.<region>.<account>.allizom.org/
+```
+
+And we can see here that all is well, some resources got modified, while others got created and destroyed. In the end,  we see the outputs provided by our deployment.
 
 ## Quick Commands
 
@@ -65,11 +163,17 @@ git submodule update --init --recursive
 
 nubis-builder build
 
-*Edit nubis/cloudformation/parameters.json*
+*Edit nubis/terraform/terraform.tfvars
 
-aws cloudformation create-stack --template-body file://nubis/cloudformation/main.json --parameters file://nubis/cloudformation/parameters.json --stack-name dpaste-xxx
+cd nubis/terraform
 
-aws cloudformation delete-stack --stack-name dpaste-xxx
+* Download/update TF modules
+CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform get
 
-nubis-consul --stack-name dpaste-xxx --settings nubis/cloudformation/parameters.json delete
+* Preview proposed changes
+CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform plan
+
+*Apply proposed changes
+CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform apply
+
 ```
