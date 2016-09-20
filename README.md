@@ -6,7 +6,7 @@ The structure of the repository is quite simple. The application is installed as
 
 
 ## Deployment Process
-Currently there are two steps necessary to deploy this project. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the [Nubis Builder](#nubis-builder) bits and jump straight to the [Cloudformation](#cloudformation) section.
+Currently there are two steps necessary to deploy this project. While these steps are listed in order to build and deploy, it is typically not necessary to run the build steps. This means you can skip the [Nubis Builder](#nubis-builder) bits and jump straight to the [Terraform](#terraform) section.
 
 
 ### Puppet
@@ -36,7 +36,7 @@ The next step is to take the shiny new AMI that nubis-builder built and deploy i
 0. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes place. This is where you describe your infrastructure. Things like worker pools, load balancers, DNS and so on.
 0. [outputs.tf](nubis/terraform/outputs.tf) is where you can define handy outputs from your deployment, like the final URL of the deployed application.
 0. [consul.tf](nubis/terraform/consul.tf) is where you can define the infrastructure settings your app needs access to.
-0. [README.md](nubis/cloudformation/README.md) contains some handy cut-and-paste cheat-sheet style commands for your future reference.
+0. [README.md](nubis/terraform/README.md) contains some handy cut-and-paste cheat-sheet style commands for your future reference.
 
 To get ready to execute Terraform, first change your current directory to the [terraform/](nubis/terraform/) directory
 
