@@ -1,4 +1,4 @@
-# nubis-dpaste
+﻿# nubis-dpaste
 This is a Nubis deployment of the [dpaste](https://github.com/bartTC/dpaste) application. The purpose of this project is to demonstrate an example of a django / python deployment. This repository is an example of a "deployment repository", in other words a repository that does not contain any application code.
 
 ## Repository Structure
@@ -10,7 +10,7 @@ Currently there are two steps necessary to deploy this project. While these step
 
 
 ### Puppet
-We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our instance. Puppet installs and configures services such as *Apache* and *MySQL*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step. This means that there is nothing for you to do here, however yo should be aware of this for when you deploy your own applications.
+We are using [puppet](http://puppetlabs.com/) in this example to bootstrap up our instance. Puppet installs and configures services such as *Apache* and *MySQL*. We are using the [nubis-puppet](https://github.com/Nubisproject/nubis-puppet) project for our module collection. This is conveniently installed on the *base image* (built by [nubis-base](https://github.com/Nubisproject/nubis-base)) that we are going to use as the starting image for our Packer build in the next step. This means that there is nothing for you to do here, however you should be aware of this for when you deploy your own applications.
 
 
 ### Nubis Builder
@@ -48,10 +48,10 @@ Then, to execute Terraform, you first need to create your *terraform.tfvars* fil
 
 NOTE: You will likely need to change the *service_name* from *dpaste-<username>* to something unique as each deployment requires a unique name.
 
-Also, if you skiped the build step above you can use the pre-built AMIs to deploy with:
+Also, if you skipped the build step above you can use the pre-built AMIs to deploy with:
 
- * **us-west-2**: ami-XXX
- * **us-east-1**: ami-YYY
+ * **us-east-1**: ami-ebcab6fc
+ * **us-west-2**: ami-eea67b8e
 
 #### Terraform Get
 
@@ -120,7 +120,7 @@ Nothing has hapenned yet.
 
 #### Terraform Apply
 
-Now that we have reviewed the proposed changes, we can now apply them with:
+Now that we have reviewed the proposed changes, we can apply them with:
 
 ```
 $> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform apply
