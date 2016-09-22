@@ -13,6 +13,10 @@ module "worker" {
   # Explicitely pick our load limits for up/down scaling
   #scale_up_load = 75
   #scale_down_load = 10
+
+  # Use a custom ssh key
+  ssh_key_file = "${var.ssh_key_file}"
+  ssh_key_name = "${var.ssh_key_name}"
 }
 
 module "load_balancer" {
