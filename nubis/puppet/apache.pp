@@ -15,7 +15,7 @@ include nubis_discovery
 nubis::discovery::service { 'dpaste':
   tags => [ 'apache','backend', '%%PROJECT%%' ],
   port => $port,
-  check => "/usr/bin/curl -I http://localhost:$port",
+  check => "/usr/bin/curl -If http://localhost:$port",
   interval => "30s",
 }
 
