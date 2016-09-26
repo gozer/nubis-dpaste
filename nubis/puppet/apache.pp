@@ -59,3 +59,4 @@ apache::vhost { $::vhost_name:
     wsgi_process_group          => 'wsgi',
     wsgi_script_aliases         => { '/' => $::wsgi_path },
 }
+
