@@ -13,7 +13,7 @@ $port = 80
 include nubis_discovery
 
 nubis::discovery::service { 'dpaste':
-  tags => [ 'apache','backend','%%PROJECT%%' ],
+  tags => [ 'apache','backend' ],
   port => $port,
   check => "/usr/bin/curl -If http://localhost:$port",
   interval => "30s",
