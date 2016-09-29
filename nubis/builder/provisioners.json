@@ -1,25 +1,25 @@
 {
-"provisioners": [
-  {
-    "type": "shell",
-    "inline": [
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
         "sudo mkdir -p -m 755 /var/www/dpaste",
         "sudo chown ubuntu:ubuntu /var/www/dpaste"
-    ],
-    "order": "1"
-  },
-  {
-    "type": "file",
-    "source": "dpaste/",
-    "destination": "/var/www/dpaste",
-    "order": "2"
-  },
-  {
-    "type": "shell",
-    "inline": [
+      ],
+      "order": "1"
+    },
+    {
+      "type": "file",
+      "source": "dpaste/",
+      "destination": "/var/www/dpaste",
+      "order": "2"
+    },
+    {
+      "type": "shell",
+      "inline": [
         "sudo python -m compileall /var/www/dpaste"
-    ],
-    "order": "11"
-  }
-]
+      ],
+      "order": "11"
+    }
+  ]
 }
