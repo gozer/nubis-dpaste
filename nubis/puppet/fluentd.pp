@@ -23,3 +23,4 @@ fluentd::source { 'apache_error':
     'path' => '/var/log/apache2/error.log',
   },
 }
+
