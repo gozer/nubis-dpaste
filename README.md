@@ -1,4 +1,9 @@
 ﻿# nubis-dpaste
+
+[![Version](https://img.shields.io/github/release/nubisproject/nubis-dpaste.svg?maxAge=2592000)](https://github.com/nubisproject/nubis-dpaste/releases)
+[![Build Status](https://img.shields.io/travis/nubisproject/nubis-dpaste/master.svg?maxAge=2592000)](https://travis-ci.org/nubisproject/nubis-dpaste)
+[![Issues](https://img.shields.io/github/issues/nubisproject/nubis-dpaste.svg?maxAge=2592000)](https://github.com/nubisproject/nubis-dpaste/issues)
+
 This is a Nubis deployment of the [dpaste](https://github.com/bartTC/dpaste) application. The purpose of this project is to demonstrate an example of a django / python deployment. This repository is an example of a "deployment repository", in other words a repository that does not contain any application code.
 
 ## Repository Structure
