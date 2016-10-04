@@ -40,8 +40,9 @@ apache::vhost { $::vhost_name:
     setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     aliases                     => [
-        { alias         => '/static',
-          path => $::static_root
+        {
+            alias => '/static',
+            path  => $::static_root
         }
     ],
     wsgi_application_group      => '%{GLOBAL}',
