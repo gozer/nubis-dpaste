@@ -13,10 +13,10 @@ $port = 80
 include nubis_discovery
 
 nubis::discovery::service { 'dpaste':
-  tags => [ 'apache','backend', '%%PROJECT%%' ],
-  port => $port,
-  check => "/usr/bin/curl -If http://localhost:$port",
-  interval => "30s",
+  tags     => [ 'apache','backend' ],
+  port     => $port,
+  check    => "/usr/bin/curl -If http://localhost:${port}",
+  interval => '30s',
 }
 
 class {
@@ -40,8 +40,9 @@ apache::vhost { $::vhost_name:
     setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     aliases                     => [
-        { alias => '/static',
-          path  => $::static_root
+        {
+            alias => '/static',
+            path  => $::static_root
         }
     ],
     wsgi_application_group      => '%{GLOBAL}',
@@ -59,3 +60,4 @@ apache::vhost { $::vhost_name:
     wsgi_process_group          => 'wsgi',
     wsgi_script_aliases         => { '/' => $::wsgi_path },
 }
+

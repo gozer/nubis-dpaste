@@ -8,6 +8,7 @@ NUBIS_ENVIRONMENT=$(nubis-metadata NUBIS_ENVIRONMENT)
 CONSUL_PREFIX="$NUBIS_STACK/$NUBIS_ENVIRONMENT"
 
 # Load our settings (confd called us after generating this)
+# shellcheck disable=SC1091
 . /etc/nubis-config/dpaste.sh
 
 # Generate our App secret if there isn't one already

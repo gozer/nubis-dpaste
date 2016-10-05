@@ -11,7 +11,11 @@ module "worker" {
   scale_load_defaults = true
 
   # Explicitely pick our load limits for up/down scaling
+
+
   #scale_up_load = 75
+
+
   #scale_down_load = 10
 
   # Use a custom ssh key
