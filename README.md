@@ -64,7 +64,7 @@ Also, if you skipped the build step above you can use the pre-built AMIs to depl
 Terraform makes heavy uses of modules, and before we can successfully deploy an application with it, we need it to first download the modules it needs
 
 ```bash
-$> terraform get --update=true
+$> terraform get -update=true
 Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
 Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
 Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update)
@@ -176,7 +176,7 @@ cd nubis/terraform
 export ACCOUNT_NAME='some-account-name'
 
 * Download/update TF modules
-terraform get --update=true
+terraform get -update=true
 
 * Preview proposed changes
 CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform plan
