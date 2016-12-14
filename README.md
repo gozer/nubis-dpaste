@@ -1,4 +1,9 @@
 ﻿# nubis-dpaste
+
+[![Version](https://img.shields.io/github/release/nubisproject/nubis-dpaste.svg?maxAge=2592000)](https://github.com/nubisproject/nubis-dpaste/releases)
+[![Build Status](https://img.shields.io/travis/nubisproject/nubis-dpaste/master.svg?maxAge=2592000)](https://travis-ci.org/nubisproject/nubis-dpaste)
+[![Issues](https://img.shields.io/github/issues/nubisproject/nubis-dpaste.svg?maxAge=2592000)](https://github.com/nubisproject/nubis-dpaste/issues)
+
 This is a Nubis deployment of the [dpaste](https://github.com/bartTC/dpaste) application. The purpose of this project is to demonstrate an example of a django / python deployment. This repository is an example of a "deployment repository", in other words a repository that does not contain any application code.
 
 ## Repository Structure
@@ -38,10 +43,11 @@ The next step is to take the shiny new AMI that nubis-builder built and deploy i
 0. [consul.tf](nubis/terraform/consul.tf) is where you can define the infrastructure settings your app needs access to.
 0. [README.md](nubis/terraform/README.md) contains some handy cut-and-paste cheat-sheet style commands for your future reference.
 
-To get ready to execute Terraform, first change your current directory to the [terraform/](nubis/terraform/) directory
+To get ready to execute Terraform, first change your current directory to the [terraform/](nubis/terraform/) directory and set an account name variable:
 
 ```bash
-$> cd nubis/terraform
+cd nubis/terraform
+export ACCOUNT_NAME='some-account-name'
 ```
 
 Then, to execute Terraform, you first need to create your *terraform.tfvars* file, for which there is a template provided (terraform.tfvars-dist). After which you will execute Terraform.
@@ -50,8 +56,8 @@ NOTE: You will likely need to change the *service_name* from *dpaste-<username>*
 
 Also, if you skipped the build step above you can use the pre-built AMIs to deploy with:
 
- * **us-east-1**: ami-ebcab6fc
- * **us-west-2**: ami-eea67b8e
+ * **us-east-1**: ami-201c5337
+ * **us-west-2**: ami-cfc51daf
 
 #### Terraform Get
 
@@ -71,7 +77,7 @@ Get: git::https://github.com/nubisproject/nubis-terraform.git?ref=master (update
 Now, we are ready to plan our deployment. In terraform parlance, this means just previewing all the steps necessary to achieve the deployment we have specified, without actually making any changes to the infrastructure yet.
 
 ```bash
-$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform plan
+$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform plan
 2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
 2016/09/20 11:58:04 Looking up keyring for nubis-lab
 2016/09/20 11:58:04 Using session ****************XXXX, expires in 55m30.765625184s
@@ -116,14 +122,14 @@ $> terraform plan -var ami=ami-XYZ123
 
 And finally, the output of Terraform's plan shows precisely what steps will be taken, and they are quite human parseable. In this example, for instance, we can see this deploy will change an autoscaling group, a launch configuration, and some associated autoscaling policies and cloudwatch alarms.
 
-Nothing has hapenned yet.
+Nothing has happened yet.
 
 #### Terraform Apply
 
 Now that we have reviewed the proposed changes, we can apply them with:
 
 ```
-$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform apply
+$> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform apply
 2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
 2016/09/20 11:58:04 Looking up keyring for nubis-lab
 2016/09/20 11:58:04 Using session ****************XXXX, expires in 55m30.765625184s
@@ -167,13 +173,15 @@ nubis-builder build
 
 cd nubis/terraform
 
+export ACCOUNT_NAME='some-account-name'
+
 * Download/update TF modules
-CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform get
+terraform get -update=true
 
 * Preview proposed changes
-CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform plan
+CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform plan
 
 *Apply proposed changes
-CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec account-name-admin -- terraform apply
+CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform apply
 
 ```
