@@ -1,5 +1,42 @@
 # Change Log
 
+## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-20)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.3...v1.3.0)
+
+**Closed issues:**
+
+- \[terraform\] Allow custom ssh keys [\#79](https://github.com/nubisproject/nubis-dpaste/issues/79)
+- Move all files to nubis/puppet/files [\#66](https://github.com/nubisproject/nubis-dpaste/issues/66)
+- Something fishy about apache restarts [\#37](https://github.com/nubisproject/nubis-dpaste/issues/37)
+
+**Merged pull requests:**
+
+- Update builder artifacts for v1.3.0 release [\#100](https://github.com/nubisproject/nubis-dpaste/pull/100) ([tinnightcap](https://github.com/tinnightcap))
+- update nubis-travis to v0.1.3 [\#98](https://github.com/nubisproject/nubis-dpaste/pull/98) ([gozer](https://github.com/gozer))
+- update to nubis-travis v0.1.3 [\#97](https://github.com/nubisproject/nubis-dpaste/pull/97) ([gozer](https://github.com/gozer))
+- Expose userdata [\#96](https://github.com/nubisproject/nubis-dpaste/pull/96) ([limed](https://github.com/limed))
+- Update README commands to be more accurate [\#94](https://github.com/nubisproject/nubis-dpaste/pull/94) ([tinnightcap](https://github.com/tinnightcap))
+- Enable nubis-travis v0.1.0 [\#93](https://github.com/nubisproject/nubis-dpaste/pull/93) ([gozer](https://github.com/gozer))
+- Delete Consul keys on deployment destruction [\#87](https://github.com/nubisproject/nubis-dpaste/pull/87) ([gozer](https://github.com/gozer))
+- fail health check if not HTTP 200 [\#83](https://github.com/nubisproject/nubis-dpaste/pull/83) ([gozer](https://github.com/gozer))
+- Add the project tag to the Consul service  [\#81](https://github.com/nubisproject/nubis-dpaste/pull/81) ([gozer](https://github.com/gozer))
+- Add ssh\_key\_name and ssh\_key\_file arguments [\#80](https://github.com/nubisproject/nubis-dpaste/pull/80) ([gozer](https://github.com/gozer))
+- Clean up old cloudformation files [\#77](https://github.com/nubisproject/nubis-dpaste/pull/77) ([tinnightcap](https://github.com/tinnightcap))
+- Small fixups [\#76](https://github.com/nubisproject/nubis-dpaste/pull/76) ([tinnightcap](https://github.com/tinnightcap))
+- Fix to broken links [\#75](https://github.com/nubisproject/nubis-dpaste/pull/75) ([gozer](https://github.com/gozer))
+- add a TF specific readme [\#74](https://github.com/nubisproject/nubis-dpaste/pull/74) ([gozer](https://github.com/gozer))
+- Terraform our README [\#73](https://github.com/nubisproject/nubis-dpaste/pull/73) ([gozer](https://github.com/gozer))
+- Compatibility with dpaste 2.8 + 2.9+, run syncdb and migrate separately [\#72](https://github.com/nubisproject/nubis-dpaste/pull/72) ([gozer](https://github.com/gozer))
+- Updating dpaste to 2.9 [\#71](https://github.com/nubisproject/nubis-dpaste/pull/71) ([tinnightcap](https://github.com/tinnightcap))
+- Cleaner dependencies [\#70](https://github.com/nubisproject/nubis-dpaste/pull/70) ([gozer](https://github.com/gozer))
+- Update .gitignore [\#69](https://github.com/nubisproject/nubis-dpaste/pull/69) ([tinnightcap](https://github.com/tinnightcap))
+- massive simplification work [\#68](https://github.com/nubisproject/nubis-dpaste/pull/68) ([gozer](https://github.com/gozer))
+- Add database, autoscaling and Consul goodness [\#67](https://github.com/nubisproject/nubis-dpaste/pull/67) ([gozer](https://github.com/gozer))
+- Convert over to nubis-terraform TF modules for the win [\#65](https://github.com/nubisproject/nubis-dpaste/pull/65) ([gozer](https://github.com/gozer))
+- Update migrate file to handle early start [\#64](https://github.com/nubisproject/nubis-dpaste/pull/64) ([tinnightcap](https://github.com/tinnightcap))
+- Update builder artifacts for v1.3.0-dev release [\#63](https://github.com/nubisproject/nubis-dpaste/pull/63) ([gozer](https://github.com/gozer))
+- Update builder artifacts for v1.2.3 release [\#62](https://github.com/nubisproject/nubis-dpaste/pull/62) ([gozer](https://github.com/gozer))
+
 ## [v1.2.3](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.3) (2016-08-05)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.2...v1.2.3)
 
@@ -7,8 +44,13 @@
 
 - DB migrations sometimes fail [\#58](https://github.com/nubisproject/nubis-dpaste/issues/58)
 
+**Closed issues:**
+
+- Tag v1.2.3 release [\#60](https://github.com/nubisproject/nubis-dpaste/issues/60)
+
 **Merged pull requests:**
 
+- Update CHANGELOG for v1.2.3 release [\#61](https://github.com/nubisproject/nubis-dpaste/pull/61) ([gozer](https://github.com/gozer))
 - Wait for the confd file before running migrate.sh [\#59](https://github.com/nubisproject/nubis-dpaste/pull/59) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v1.2.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.2) (2016-08-02)
