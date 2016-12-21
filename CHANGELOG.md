@@ -1,16 +1,29 @@
 # Change Log
 
-## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-20)
+## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-21)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.3.0...v1.3.0)
+
+**Merged pull requests:**
+
+- Update module for release [\#102](https://github.com/nubisproject/nubis-dpaste/pull/102) ([tinnightcap](https://github.com/tinnightcap))
+
+## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-21)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.3...v1.3.0)
+
+**Fixed bugs:**
+
+- DB migrations sometimes fail [\#58](https://github.com/nubisproject/nubis-dpaste/issues/58)
 
 **Closed issues:**
 
 - \[terraform\] Allow custom ssh keys [\#79](https://github.com/nubisproject/nubis-dpaste/issues/79)
 - Move all files to nubis/puppet/files [\#66](https://github.com/nubisproject/nubis-dpaste/issues/66)
 - Something fishy about apache restarts [\#37](https://github.com/nubisproject/nubis-dpaste/issues/37)
+- Tag v1.3.0 release [\#99](https://github.com/nubisproject/nubis-dpaste/issues/99)
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v1.3.0 release [\#101](https://github.com/nubisproject/nubis-dpaste/pull/101) ([tinnightcap](https://github.com/tinnightcap))
 - Update builder artifacts for v1.3.0 release [\#100](https://github.com/nubisproject/nubis-dpaste/pull/100) ([tinnightcap](https://github.com/tinnightcap))
 - update nubis-travis to v0.1.3 [\#98](https://github.com/nubisproject/nubis-dpaste/pull/98) ([gozer](https://github.com/gozer))
 - update to nubis-travis v0.1.3 [\#97](https://github.com/nubisproject/nubis-dpaste/pull/97) ([gozer](https://github.com/gozer))
@@ -39,10 +52,6 @@
 
 ## [v1.2.3](https://github.com/nubisproject/nubis-dpaste/tree/v1.2.3) (2016-08-05)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.2...v1.2.3)
-
-**Fixed bugs:**
-
-- DB migrations sometimes fail [\#58](https://github.com/nubisproject/nubis-dpaste/issues/58)
 
 **Closed issues:**
 
