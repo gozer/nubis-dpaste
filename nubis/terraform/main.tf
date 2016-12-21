@@ -23,7 +23,7 @@ module "worker" {
   ssh_key_name = "${var.ssh_key_name}"
 
   # ldap group names
-  nubis_sudo_groups = "${var.nubis.sudo_groups}"
+  nubis_sudo_groups = "${var.nubis_sudo_groups}"
   nubis_user_groups = "${var.nubis_user_groups}"
 }
 
