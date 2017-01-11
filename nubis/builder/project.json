@@ -5,7 +5,7 @@
     ],
     "project_description": "Nubis Example Dpaste Application",
     "project_name": "nubis-dpaste",
-    "project_version": "v1.3.0_{{env `GIT_COMMIT_SHA`}}",
-    "source_ami_project_version": "v1.3.0"
+    "project_version": "v1.4.0-dev_{{env `GIT_COMMIT_SHA`}}",
+    "source_ami_project_version": "v1.4.0-dev"
   }
 }
