@@ -10,24 +10,11 @@ $wsgi_path = '/var/www/dpaste/wsgi.py'
 $static_root = '/var/www/dpaste/dpaste/static/'
 $port = 80
 
-include nubis_discovery
-
-nubis::discovery::service { 'dpaste':
-  tags     => [ 'apache','backend' ],
-  port     => $port,
-  check    => "/usr/bin/curl -If http://localhost:${port}",
-  interval => '30s',
+class { 'nubis_apache':
 }
 
-class {
-    'apache':
-        default_mods        => true,
-        default_vhost       => false,
-        default_confd_files => false;
-    'apache::mod::wsgi':
-        wsgi_socket_prefix => '/var/run/wsgi';
-    'apache::mod::remoteip':
-        proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
+class { 'apache::mod::wsgi':
+    wsgi_socket_prefix => '/var/run/wsgi';
 }
 
 apache::vhost { $::vhost_name:
@@ -37,8 +24,18 @@ apache::vhost { $::vhost_name:
     docroot_owner               => 'ubuntu',
     docroot_group               => 'ubuntu',
     block                       => ['scm'],
-    setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
-    access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+    setenvif           => [
+      'X_FORWARDED_PROTO https HTTPS=on',
+      'Remote_Addr 127\.0\.0\.1 internal',
+      'Remote_Addr ^10\. internal',
+    ],
+    access_log_env_var => '!internal',
+    access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+    headers            => [
+      "set X-Nubis-Version ${project_version}",
+      "set X-Nubis-Project ${project_name}",
+      "set X-Nubis-Build   ${packer_build_name}",
+    ],
     aliases                     => [
         {
             alias => '/static',

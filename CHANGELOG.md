@@ -1,11 +1,19 @@
 # Change Log
 
-## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-21)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.3.0...v1.3.0)
+## [v1.4.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.0) (2017-03-23)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.3.0...v1.4.0)
+
+**Closed issues:**
+
+- Convert Apache puppet example to nubis\_apache [\#111](https://github.com/nubisproject/nubis-dpaste/issues/111)
+- Remove useless and incomplete storage example [\#109](https://github.com/nubisproject/nubis-dpaste/issues/109)
 
 **Merged pull requests:**
 
-- Fix typo in variable name [\#104](https://github.com/nubisproject/nubis-dpaste/pull/104) ([tinnightcap](https://github.com/tinnightcap))
+- Remove custom apache/fluentd puppet code in favor of nubis\_apache [\#112](https://github.com/nubisproject/nubis-dpaste/pull/112) ([gozer](https://github.com/gozer))
+- The storage puppet example was never needed [\#110](https://github.com/nubisproject/nubis-dpaste/pull/110) ([gozer](https://github.com/gozer))
+- Update builder artifacts for v1.4.0 release \[skip ci\] [\#108](https://github.com/nubisproject/nubis-dpaste/pull/108) ([tinnightcap](https://github.com/tinnightcap))
+- Update builder artifacts for v1.4.0-dev release [\#106](https://github.com/nubisproject/nubis-dpaste/pull/106) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v1.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.3.0) (2016-12-21)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.2.3...v1.3.0)
@@ -23,6 +31,8 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v1.3.0 release [\#105](https://github.com/nubisproject/nubis-dpaste/pull/105) ([tinnightcap](https://github.com/tinnightcap))
+- Fix typo in variable name [\#104](https://github.com/nubisproject/nubis-dpaste/pull/104) ([tinnightcap](https://github.com/tinnightcap))
 - Update CHANGELOG for v1.3.0 release [\#103](https://github.com/nubisproject/nubis-dpaste/pull/103) ([tinnightcap](https://github.com/tinnightcap))
 - Update module for release [\#102](https://github.com/nubisproject/nubis-dpaste/pull/102) ([tinnightcap](https://github.com/tinnightcap))
 - Update CHANGELOG for v1.3.0 release [\#101](https://github.com/nubisproject/nubis-dpaste/pull/101) ([tinnightcap](https://github.com/tinnightcap))
