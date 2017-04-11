@@ -24,14 +24,14 @@ apache::vhost { $::vhost_name:
     docroot_owner               => 'ubuntu',
     docroot_group               => 'ubuntu',
     block                       => ['scm'],
-    setenvif           => [
+    setenvif                    => [
       'X_FORWARDED_PROTO https HTTPS=on',
       'Remote_Addr 127\.0\.0\.1 internal',
       'Remote_Addr ^10\. internal',
     ],
-    access_log_env_var => '!internal',
-    access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
-    headers            => [
+    access_log_env_var          => '!internal',
+    access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+    headers                     => [
       "set X-Nubis-Version ${project_version}",
       "set X-Nubis-Project ${project_name}",
       "set X-Nubis-Build   ${packer_build_name}",
