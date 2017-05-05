@@ -1,11 +1,23 @@
 # Change Log
 
+## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-05)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.2...v1.4.2)
+
+**Merged pull requests:**
+
+- Add nubis/builder/artifacts/AMIs.json to .gitignore [\#122](https://github.com/nubisproject/nubis-dpaste/pull/122) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-03)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.1...v1.4.2)
 
 **Closed issues:**
 
 - Expose nubis\_sudo\_groups and nubis\_user\_groups userdata [\#95](https://github.com/nubisproject/nubis-dpaste/issues/95)
+- Tag v1.4.2 release [\#119](https://github.com/nubisproject/nubis-dpaste/issues/119)
+
+**Merged pull requests:**
+
+- Update CHANGELOG for v1.4.2 release \[skip ci\] [\#120](https://github.com/nubisproject/nubis-dpaste/pull/120) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v1.4.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.1) (2017-04-11)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.0...v1.4.1)
