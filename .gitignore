@@ -10,4 +10,4 @@ nubis/builder/artifacts/*-dev*
 nubis/terraform/terraform.tfstate*
 nubis/terraform/.terraform
 nubis/terraform/terraform.tfvars
-
+nubis/builder/artifacts/AMIs.json
