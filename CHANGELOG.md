@@ -1,22 +1,26 @@
 # Change Log
 
-## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-05)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.2...v1.4.2)
+## [v1.5.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.0) (2017-06-24)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.2...v1.5.0)
 
 **Merged pull requests:**
 
-- Add nubis/builder/artifacts/AMIs.json to .gitignore [\#122](https://github.com/nubisproject/nubis-dpaste/pull/122) ([tinnightcap](https://github.com/tinnightcap))
+- bump TF refs to v1.4.2 [\#126](https://github.com/nubisproject/nubis-dpaste/pull/126) ([gozer](https://github.com/gozer))
 
-## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-03)
+## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-05)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.1...v1.4.2)
 
 **Closed issues:**
 
 - Expose nubis\_sudo\_groups and nubis\_user\_groups userdata [\#95](https://github.com/nubisproject/nubis-dpaste/issues/95)
+- Tag v1.4.2 release [\#123](https://github.com/nubisproject/nubis-dpaste/issues/123)
 - Tag v1.4.2 release [\#119](https://github.com/nubisproject/nubis-dpaste/issues/119)
 
 **Merged pull requests:**
 
+- Merge v1.4.2 release into develop. \[skip ci\] [\#125](https://github.com/nubisproject/nubis-dpaste/pull/125) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v1.4.2 release \[skip ci\] [\#124](https://github.com/nubisproject/nubis-dpaste/pull/124) ([tinnightcap](https://github.com/tinnightcap))
+- Add nubis/builder/artifacts/AMIs.json to .gitignore [\#122](https://github.com/nubisproject/nubis-dpaste/pull/122) ([tinnightcap](https://github.com/tinnightcap))
 - Update CHANGELOG for v1.4.2 release \[skip ci\] [\#120](https://github.com/nubisproject/nubis-dpaste/pull/120) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v1.4.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.1) (2017-04-11)
