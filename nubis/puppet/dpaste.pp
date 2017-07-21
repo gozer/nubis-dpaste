@@ -18,19 +18,19 @@ file { '/usr/var':
 }
 
 # pip install requirements
-python::requirements { '/var/www/dpaste/requirements.txt':
+python::requirements { "/var/www/${project_name}/requirements.txt":
   require => [
     Class['python'],
     Class['mysql::bindings'],
   ]
 }
 
-file { '/var/www/dpaste/wsgi.py':
+file { "/var/www/${project_name}/wsgi.py":
   ensure => present,
   source => 'puppet:///nubis/files/wsgi.py',
 }
 
-file { '/var/www/dpaste/dpaste/settings/local.py':
+file { "/var/www/${project_name}/dpaste/settings/local.py":
   ensure => present,
   source => 'puppet:///nubis/files/local.py',
 }
@@ -39,7 +39,7 @@ file { '/var/www/dpaste/dpaste/settings/local.py':
 
 include nubis_configuration
 
-file { '/usr/local/bin/dpaste-update':
+file { "/usr/local/bin/${project_name}-update":
   ensure => present,
   source => 'puppet:///nubis/files/update',
   owner  => root,
@@ -47,7 +47,7 @@ file { '/usr/local/bin/dpaste-update':
   mode   => '0755',
 }
 
-nubis::configuration{ 'dpaste':
+nubis::configuration{ $project_name:
   format => 'sh',
-  reload => '/usr/local/bin/dpaste-update'
+  reload => "/usr/local/bin/${project_name}-update"
 }
