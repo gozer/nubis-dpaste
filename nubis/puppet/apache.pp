@@ -4,10 +4,10 @@
 # [0] https://github.com/puppetlabs/puppetlabs-apache
 #
 
-$vhost_name = 'dpaste'
-$install_root = '/var/www/dpaste'
-$wsgi_path = '/var/www/dpaste/wsgi.py'
-$static_root = '/var/www/dpaste/dpaste/static/'
+$vhost_name = $project_name
+$install_root = "/var/www/${project_name}"
+$wsgi_path = "/var/www/${project_name}/wsgi.py"
+$static_root = "/var/www/${project_name}/dpaste/static/"
 $port = 80
 
 class { 'nubis_apache':

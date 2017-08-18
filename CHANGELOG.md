@@ -1,10 +1,31 @@
 # Change Log
 
-## [v1.5.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.0) (2017-06-24)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.2...v1.5.0)
+## [v1.5.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.1) (2017-08-18)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.5.0...v1.5.1)
+
+**Closed issues:**
+
+- Don't hard-code project name as much as possible [\#130](https://github.com/nubisproject/nubis-dpaste/issues/130)
 
 **Merged pull requests:**
 
+- use programattic project\_name everywhere possible [\#131](https://github.com/nubisproject/nubis-dpaste/pull/131) ([gozer](https://github.com/gozer))
+
+## [v1.5.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.0) (2017-06-24)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.2...v1.5.0)
+
+**Fixed bugs:**
+
+- Fixups for Travis lint tests [\#115](https://github.com/nubisproject/nubis-dpaste/pull/115) ([tinnightcap](https://github.com/tinnightcap))
+
+**Closed issues:**
+
+- Tag v1.5.0 release [\#127](https://github.com/nubisproject/nubis-dpaste/issues/127)
+
+**Merged pull requests:**
+
+- Merge v1.5.0 release into develop. \[skip ci\] [\#129](https://github.com/nubisproject/nubis-dpaste/pull/129) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v1.5.0 release \[skip ci\] [\#128](https://github.com/nubisproject/nubis-dpaste/pull/128) ([tinnightcap](https://github.com/tinnightcap))
 - bump TF refs to v1.4.2 [\#126](https://github.com/nubisproject/nubis-dpaste/pull/126) ([gozer](https://github.com/gozer))
 
 ## [v1.4.2](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.2) (2017-05-05)
@@ -25,10 +46,6 @@
 
 ## [v1.4.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.4.1) (2017-04-11)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.4.0...v1.4.1)
-
-**Fixed bugs:**
-
-- Fixups for Travis lint tests [\#115](https://github.com/nubisproject/nubis-dpaste/pull/115) ([tinnightcap](https://github.com/tinnightcap))
 
 **Closed issues:**
 

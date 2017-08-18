@@ -3,21 +3,21 @@
     {
       "type": "shell",
       "inline": [
-        "sudo mkdir -p -m 755 /var/www/dpaste",
-        "sudo chown ubuntu:ubuntu /var/www/dpaste"
+        "sudo mkdir -p -m 755 /var/www/{{user `project_name`}}",
+        "sudo chown ubuntu:ubuntu /var/www/{{user `project_name`}}"
       ],
       "order": "1"
     },
     {
       "type": "file",
       "source": "dpaste/",
-      "destination": "/var/www/dpaste",
+      "destination": "/var/www/{{user `project_name`}}",
       "order": "2"
     },
     {
       "type": "shell",
       "inline": [
-        "sudo python -m compileall /var/www/dpaste"
+        "sudo python -m compileall /var/www/{{user `project_name`}}"
       ],
       "order": "11"
     }
