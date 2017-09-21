@@ -1,5 +1,3 @@
-﻿
-
 # Working with Terraform
 
 ## Set Up
