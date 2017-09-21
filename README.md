@@ -1,5 +1,3 @@
-﻿
-
 # nubis-dpaste
 
 [![Version](https://img.shields.io/github/release/nubisproject/nubis-dpaste.svg?maxAge=2592000)](https://github.com/nubisproject/nubis-dpaste/releases)
@@ -48,7 +46,7 @@ that will build our Amazon Machine Image (AMI). It is made up of a two pieces:
     * Invokes a puppet standalone run through nubis-builder
     * Invokes a *builders* statement describing where to build the AMI, also
       run through nubis-builder
-1. A [project.json](nubis/builder/project.json) file which contains settings
+2. A [project.json](nubis/builder/project.json) file which contains settings
    for nubis-builder
 
 To run nubis-builder, from the repository root you first need to ensure that
@@ -73,14 +71,14 @@ All in all, it consists of only a few files:
 
 1. [terraform.tfvars-dist](nubis/terraform/terraform.tfvars-dist) simply lists
    the inputs you will need to provide
-1. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes
+2. [main.tf](nubis/terraform/main.tf) is where the real heavy lifting takes
    place. This is where you describe your infrastructure. Things like worker
    pools, load balancers, DNS and so on.
-1. [outputs.tf](nubis/terraform/outputs.tf) is where you can define handy
+3. [outputs.tf](nubis/terraform/outputs.tf) is where you can define handy
    outputs from your deployment, like the final URL of the deployed application.
-1. [consul.tf](nubis/terraform/consul.tf) is where you can define the
+4. [consul.tf](nubis/terraform/consul.tf) is where you can define the
    infrastructure settings your app needs access to.
-1. [README.md](nubis/terraform/README.md) contains some handy cut-and-paste
+5. [README.md](nubis/terraform/README.md) contains some handy cut-and-paste
    cheat-sheet style commands for your future reference.
 
 To get ready to execute Terraform, first change your current directory to the
@@ -186,7 +184,7 @@ Nothing has happened yet.
 
 Now that we have reviewed the proposed changes, we can apply them with:
 
-```
+```bash
 $> CONSUL_HTTP_SSL_VERIFY=0 aws-vault exec ${ACCOUNT_NAME}-admin -- terraform apply
 2016/09/20 11:58:04 Parsing config file /home/gozer/.aws/config
 2016/09/20 11:58:04 Looking up keyring for nubis-lab
