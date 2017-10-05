@@ -1,14 +1,26 @@
 # Change Log
 
+## [v2.0.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.0) (2017-10-05)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.5.1...v2.0.0)
+
+**Merged pull requests:**
+
+- Update to nubis-travis v1.4.2 [\#137](https://github.com/nubisproject/nubis-dpaste/pull/137) ([tinnightcap](https://github.com/tinnightcap))
+- Update nubis-travis to v1.4.0 [\#136](https://github.com/nubisproject/nubis-dpaste/pull/136) ([tinnightcap](https://github.com/tinnightcap))
+- Migrate to mozilla slack [\#135](https://github.com/nubisproject/nubis-dpaste/pull/135) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v1.5.1](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.1) (2017-08-18)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.5.0...v1.5.1)
 
 **Closed issues:**
 
 - Don't hard-code project name as much as possible [\#130](https://github.com/nubisproject/nubis-dpaste/issues/130)
+- Tag v1.5.1 release [\#132](https://github.com/nubisproject/nubis-dpaste/issues/132)
 
 **Merged pull requests:**
 
+- Merge v1.5.1 release into develop. \[skip ci\] [\#134](https://github.com/nubisproject/nubis-dpaste/pull/134) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v1.5.1 release \[skip ci\] [\#133](https://github.com/nubisproject/nubis-dpaste/pull/133) ([tinnightcap](https://github.com/tinnightcap))
 - use programattic project\_name everywhere possible [\#131](https://github.com/nubisproject/nubis-dpaste/pull/131) ([gozer](https://github.com/gozer))
 
 ## [v1.5.0](https://github.com/nubisproject/nubis-dpaste/tree/v1.5.0) (2017-06-24)
