@@ -3,8 +3,14 @@
 ## [v2.0.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.0) (2017-10-05)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.5.1...v2.0.0)
 
+**Closed issues:**
+
+- Tag v2.0.0 release [\#138](https://github.com/nubisproject/nubis-dpaste/issues/138)
+
 **Merged pull requests:**
 
+- Merge v2.0.0 release into develop. \[skip ci\] [\#140](https://github.com/nubisproject/nubis-dpaste/pull/140) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v2.0.0 release \[skip ci\] [\#139](https://github.com/nubisproject/nubis-dpaste/pull/139) ([tinnightcap](https://github.com/tinnightcap))
 - Update to nubis-travis v1.4.2 [\#137](https://github.com/nubisproject/nubis-dpaste/pull/137) ([tinnightcap](https://github.com/tinnightcap))
 - Update nubis-travis to v1.4.0 [\#136](https://github.com/nubisproject/nubis-dpaste/pull/136) ([tinnightcap](https://github.com/tinnightcap))
 - Migrate to mozilla slack [\#135](https://github.com/nubisproject/nubis-dpaste/pull/135) ([tinnightcap](https://github.com/tinnightcap))
