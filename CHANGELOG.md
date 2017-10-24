@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2.0.1](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.1) (2017-10-13)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.0.0...v2.0.1)
+
+**Closed issues:**
+
+- Tag v2.0.1 release [\#141](https://github.com/nubisproject/nubis-dpaste/issues/141)
+
+**Merged pull requests:**
+
+- Merge v2.0.1 release into develop. \[skip ci\] [\#143](https://github.com/nubisproject/nubis-dpaste/pull/143) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v2.0.1 release \[skip ci\] [\#142](https://github.com/nubisproject/nubis-dpaste/pull/142) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v2.0.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.0) (2017-10-05)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v1.5.1...v2.0.0)
 
