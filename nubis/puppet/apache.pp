@@ -21,8 +21,8 @@ apache::vhost { $::vhost_name:
     port                        => $port,
     default_vhost               => true,
     docroot                     => $::install_root,
-    docroot_owner               => 'ubuntu',
-    docroot_group               => 'ubuntu',
+    docroot_owner               => 'nubis',
+    docroot_group               => 'nubis',
     block                       => ['scm'],
     setenvif                    => [
       'X_FORWARDED_PROTO https HTTPS=on',
