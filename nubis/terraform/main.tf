@@ -52,3 +52,12 @@ module "dns" {
   service_name = "${var.service_name}"
   target       = "${module.load_balancer.address}"
 }
+
+module "monitoring" {
+  source       = "github.com/gozer/nubis-terraform//monitoring?ref=issue%2F151%2Fnrs"
+  region       = "${var.region}"
+  environment  = "${var.environment}"
+  account      = "${var.account}"
+  service_name = "${var.service_name}"
+  url          = "https://${module.dns.fqdn}/"
+}
