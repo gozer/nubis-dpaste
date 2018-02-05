@@ -3,7 +3,7 @@ include mysql::client
 
 # With python bindings too
 class { 'mysql::bindings':
-    python_enable => true
+    client_dev    => true,
 }
 
 # Install/manage python with PIP

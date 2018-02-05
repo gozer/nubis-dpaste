@@ -1,5 +1,29 @@
 # Change Log
 
+## [v2.0.4](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.4) (2017-12-08)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.0.3...v2.0.4)
+
+**Closed issues:**
+
+- Tag v2.0.4 release [\#152](https://github.com/nubisproject/nubis-dpaste/issues/152)
+
+**Merged pull requests:**
+
+- deregister [\#151](https://github.com/nubisproject/nubis-dpaste/pull/151) ([gozer](https://github.com/gozer))
+- \[Centennial\] [\#150](https://github.com/nubisproject/nubis-dpaste/pull/150) ([gozer](https://github.com/gozer))
+
+## [v2.0.3](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.3) (2017-11-02)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.0.2...v2.0.3)
+
+**Closed issues:**
+
+- Tag v2.0.3 release [\#147](https://github.com/nubisproject/nubis-dpaste/issues/147)
+
+**Merged pull requests:**
+
+- Merge v2.0.3 release into develop. \[skip ci\] [\#149](https://github.com/nubisproject/nubis-dpaste/pull/149) ([tinnightcap](https://github.com/tinnightcap))
+- Update CHANGELOG for v2.0.3 release \[skip ci\] [\#148](https://github.com/nubisproject/nubis-dpaste/pull/148) ([tinnightcap](https://github.com/tinnightcap))
+
 ## [v2.0.2](https://github.com/nubisproject/nubis-dpaste/tree/v2.0.2) (2017-10-24)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.0.1...v2.0.2)
 
