@@ -6,7 +6,7 @@ except:
   from dpaste.settings import *
 
 import imp
-nubis = imp.load_source('nubis', '/etc/nubis-config/dpaste.sh')
+nubis = imp.load_source('nubis', '/etc/nubis-config/nubis-dpaste.sh')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -19,10 +19,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': nubis.DB_NAME,
-        'USER': nubis.DB_USERNAME,
-        'PASSWORD': nubis.DB_PASSWORD,
-        'HOST': nubis.DB_SERVER,
+        'NAME': nubis.Database_Name,
+        'USER': nubis.Database_User,
+        'PASSWORD': nubis.Database_Password,
+        'HOST': nubis.Database_Server,
     }
 }
 
