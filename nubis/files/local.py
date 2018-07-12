@@ -5,8 +5,11 @@ try:
 except:
   from dpaste.settings import *
 
+import subprocess
+nubis_project = subprocess.check_output('nubis-metadata NUBIS_PROJECT', shell=True).rstrip()
+
 import imp
-nubis = imp.load_source('nubis', '/etc/nubis-config/nubis-dpaste.sh')
+nubis = imp.load_source('nubis', '/etc/nubis-config/%s.sh' % (nubis_project))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

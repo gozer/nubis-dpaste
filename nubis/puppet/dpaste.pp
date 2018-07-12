@@ -56,7 +56,7 @@ include nubis_discovery
 
 nubis::discovery::service { 'dpaste':
   tags     => [ 'dpaste' ],
-  port     => '8080',
+  port     => '80',
   check    => '/usr/bin/curl -fis http://localhost:80',
   interval => '30s',
 }
