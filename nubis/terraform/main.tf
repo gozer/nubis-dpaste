@@ -16,7 +16,6 @@ module "worker" {
 
   # Increase our startup healthy node time
   wait_for_capacity_timeout = "15m"
-
   # Use a custom ssh key
   ssh_key_file = "${var.ssh_key_file}"
   ssh_key_name = "${var.ssh_key_name}"
