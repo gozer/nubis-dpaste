@@ -11,12 +11,11 @@ module "worker" {
   scale_load_defaults = true
 
   # Explicitely pick our load limits for up/down scaling
-
-
   #scale_up_load = 75
-
-
   #scale_down_load = 10
+
+  # Increase our startup healthy node time
+  wait_for_capacity_timeout = "15m"
 
   # Use a custom ssh key
   ssh_key_file = "${var.ssh_key_file}"
