@@ -1,10 +1,29 @@
 # Change Log
 
-## [v2.2.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.2.0) (2018-04-06)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.1.0...v2.2.0)
+## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-17)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.2.0...v2.3.0)
+
+**Closed issues:**
+
+- TF lint [\#164](https://github.com/nubisproject/nubis-dpaste/issues/164)
 
 **Merged pull requests:**
 
+- Fix deployment name [\#167](https://github.com/nubisproject/nubis-dpaste/pull/167) ([tinnightcap](https://github.com/tinnightcap))
+- Update dpaste for more modern Nubis [\#166](https://github.com/nubisproject/nubis-dpaste/pull/166) ([tinnightcap](https://github.com/tinnightcap))
+- Fix TF lint [\#165](https://github.com/nubisproject/nubis-dpaste/pull/165) ([gozer](https://github.com/gozer))
+
+## [v2.2.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.2.0) (2018-04-06)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.1.0...v2.2.0)
+
+**Closed issues:**
+
+- Tag v2.2.0 release [\#161](https://github.com/nubisproject/nubis-dpaste/issues/161)
+
+**Merged pull requests:**
+
+- Update CHANGELOG for v2.2.0 release \[skip ci\] [\#163](https://github.com/nubisproject/nubis-dpaste/pull/163) ([nubis-automation](https://github.com/nubis-automation))
+- Update CHANGELOG for v2.2.0 release \[skip ci\] [\#162](https://github.com/nubisproject/nubis-dpaste/pull/162) ([nubis-automation](https://github.com/nubis-automation))
 - Upgrade nubis-travis [\#160](https://github.com/nubisproject/nubis-dpaste/pull/160) ([tinnightcap](https://github.com/tinnightcap))
 
 ## [v2.1.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.1.0) (2018-02-07)
