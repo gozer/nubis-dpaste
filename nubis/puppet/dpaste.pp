@@ -51,3 +51,12 @@ nubis::configuration{ $project_name:
   format => 'sh',
   reload => "/usr/local/bin/${project_name}-update"
 }
+
+include nubis_discovery
+
+nubis::discovery::service { 'dpaste':
+  tags     => [ 'dpaste' ],
+  port     => '80',
+  check    => '/usr/bin/curl -fis http://localhost:80',
+  interval => '30s',
+}
