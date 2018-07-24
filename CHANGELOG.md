@@ -1,16 +1,30 @@
 # Change Log
 
-## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-17)
+## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-24)
+[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.3.0...v2.3.0)
+
+**Closed issues:**
+
+- Include AWS provider in main.tf [\#174](https://github.com/nubisproject/nubis-dpaste/issues/174)
+
+**Merged pull requests:**
+
+- Make sure to include an AWS provider [\#175](https://github.com/nubisproject/nubis-dpaste/pull/175) ([gozer](https://github.com/gozer))
+
+## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-20)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.2.0...v2.3.0)
 
 **Closed issues:**
 
 - TF lint [\#164](https://github.com/nubisproject/nubis-dpaste/issues/164)
 - Tag v2.2.0 release [\#161](https://github.com/nubisproject/nubis-dpaste/issues/161)
+- Tag v2.3.0 release [\#171](https://github.com/nubisproject/nubis-dpaste/issues/171)
 - Tag v2.3.0 release [\#168](https://github.com/nubisproject/nubis-dpaste/issues/168)
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#173](https://github.com/nubisproject/nubis-dpaste/pull/173) ([nubis-automation](https://github.com/nubis-automation))
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#172](https://github.com/nubisproject/nubis-dpaste/pull/172) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#170](https://github.com/nubisproject/nubis-dpaste/pull/170) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#169](https://github.com/nubisproject/nubis-dpaste/pull/169) ([nubis-automation](https://github.com/nubis-automation))
 - Fix deployment name [\#167](https://github.com/nubisproject/nubis-dpaste/pull/167) ([tinnightcap](https://github.com/tinnightcap))
