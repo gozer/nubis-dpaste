@@ -1,13 +1,6 @@
 # Change Log
 
 ## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-27)
-[Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.3.0...v2.3.0)
-
-**Closed issues:**
-
-- Updates for v2.1.0 [\#153](https://github.com/nubisproject/nubis-dpaste/issues/153)
-
-## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-24)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.2.0...v2.3.0)
 
 **Closed issues:**
@@ -15,6 +8,8 @@
 - Include AWS provider in main.tf [\#174](https://github.com/nubisproject/nubis-dpaste/issues/174)
 - TF lint [\#164](https://github.com/nubisproject/nubis-dpaste/issues/164)
 - Tag v2.2.0 release [\#161](https://github.com/nubisproject/nubis-dpaste/issues/161)
+- Updates for v2.1.0 [\#153](https://github.com/nubisproject/nubis-dpaste/issues/153)
+- Tag v2.3.0 release [\#182](https://github.com/nubisproject/nubis-dpaste/issues/182)
 - Tag v2.3.0 release [\#179](https://github.com/nubisproject/nubis-dpaste/issues/179)
 - Tag v2.3.0 release [\#176](https://github.com/nubisproject/nubis-dpaste/issues/176)
 - Tag v2.3.0 release [\#171](https://github.com/nubisproject/nubis-dpaste/issues/171)
@@ -22,6 +17,8 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#184](https://github.com/nubisproject/nubis-dpaste/pull/184) ([nubis-automation](https://github.com/nubis-automation))
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#183](https://github.com/nubisproject/nubis-dpaste/pull/183) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#181](https://github.com/nubisproject/nubis-dpaste/pull/181) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#180](https://github.com/nubisproject/nubis-dpaste/pull/180) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#178](https://github.com/nubisproject/nubis-dpaste/pull/178) ([nubis-automation](https://github.com/nubis-automation))
