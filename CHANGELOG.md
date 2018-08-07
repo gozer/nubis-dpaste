@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-07-27)
+## [v2.3.0](https://github.com/nubisproject/nubis-dpaste/tree/v2.3.0) (2018-08-01)
 [Full Changelog](https://github.com/nubisproject/nubis-dpaste/compare/v2.2.0...v2.3.0)
 
 **Closed issues:**
@@ -9,6 +9,7 @@
 - TF lint [\#164](https://github.com/nubisproject/nubis-dpaste/issues/164)
 - Tag v2.2.0 release [\#161](https://github.com/nubisproject/nubis-dpaste/issues/161)
 - Updates for v2.1.0 [\#153](https://github.com/nubisproject/nubis-dpaste/issues/153)
+- Tag v2.3.0 release [\#185](https://github.com/nubisproject/nubis-dpaste/issues/185)
 - Tag v2.3.0 release [\#182](https://github.com/nubisproject/nubis-dpaste/issues/182)
 - Tag v2.3.0 release [\#179](https://github.com/nubisproject/nubis-dpaste/issues/179)
 - Tag v2.3.0 release [\#176](https://github.com/nubisproject/nubis-dpaste/issues/176)
@@ -17,6 +18,8 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#187](https://github.com/nubisproject/nubis-dpaste/pull/187) ([nubis-automation](https://github.com/nubis-automation))
+- Update CHANGELOG for v2.3.0 release \[skip ci\] [\#186](https://github.com/nubisproject/nubis-dpaste/pull/186) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#184](https://github.com/nubisproject/nubis-dpaste/pull/184) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#183](https://github.com/nubisproject/nubis-dpaste/pull/183) ([nubis-automation](https://github.com/nubis-automation))
 - Update CHANGELOG for v2.3.0 release \[skip ci\] [\#181](https://github.com/nubisproject/nubis-dpaste/pull/181) ([nubis-automation](https://github.com/nubis-automation))
